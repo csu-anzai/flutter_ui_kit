@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+
+class AppColor {
+  const AppColor._();
+  static const Color green = Color(0xFF3EDBB5);
+  static const Color greenSwatch = MaterialColor(500, {
+    50: Color(0xFFE8FBF6),
+    100: Color(0xFFC5F4E9),
+    200: Color(0xFF9FEDDA),
+    300: Color(0xFF78E6CB),
+    400: Color(0xFF5BE0C0),
+    500: green,
+    600: Color(0xFF38D7AE),
+    700: Color(0xFF30D2A5),
+    800: Color(0xFF28CD9D),
+    900: Color(0xFF1BC48D),
+  });
+  static Color paleGreen = green.withOpacity(0.2);
+  static const Color brightGreen = Color(0xFF4CE2A7);
+  
+  static const Color deepBlack = Color(0xFF000000);
+  static const Color deepWhite = Color(0xFFFFFFFF);
+  
+  static const Color red = Color(0xFFFF6B6B);
+
+  static const Color lightestGray = Color(0xFFEDEFF2);
+  static const Color gray = Color(0xFFE7E7E7);
+  static const Color mediumGray = Color(0xFFE7E7E7);
+  static const Color semiGray = Color(0xFF9DA0A6);
+}
