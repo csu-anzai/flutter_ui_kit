@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: changefinance/flutter-builder-docker:1.4.18
+    environment:
+      CODECOV_TOKEN: 2946bed5-f2c8-4478-a9d8-e553cce48cbc
+    steps:
+      - checkout
+      - run: flutter doctor -v
+      - run: flutter analyze
+      - run: flutter -v test --concurrency=2
+
+workflows:
+  version: 2
+  changeapp-workflow:
+    jobs:
+      - build
