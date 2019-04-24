@@ -1,22 +1,43 @@
 import 'package:flutter/material.dart';
 
-class InternalButton extends StatelessWidget {
+typedef FutureCallback = Future<void> Function();
+
+class InternalButton extends StatefulWidget {
   final Widget child;
-  final VoidCallback onPressed;
+  final FutureCallback onPressed;
 
   InternalButton({
-    Key key,
     @required this.child,
     @required this.onPressed,
+    Key key,
   })  : assert(child != null),
         assert(onPressed != null),
         super(key: key);
 
   @override
+  _InternalButtonState createState() => _InternalButtonState();
+}
+
+class _InternalButtonState extends State<InternalButton> {
+  bool _enabled = true;
+
+  @override
   Widget build(BuildContext context) {
     return FlatButton(
-      child: child,
-      onPressed: onPressed,
+      child: widget.child,
+      onPressed: _enabled ? _handlePress : null,
     );
+  }
+
+  Future<void> _handlePress() async {
+    _setEnabled(false);
+    await widget.onPressed();
+    _setEnabled(true);
+  }
+
+  void _setEnabled(bool enabled) {
+    if (_enabled != enabled) {
+      setState(() => _enabled = enabled);
+    }
   }
 }

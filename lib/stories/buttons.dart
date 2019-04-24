@@ -9,7 +9,7 @@ class Buttons extends StoryPage {
     return [
       Story(
         title: 'Large Filled Button',
-        child: Text('Coming soon'),
+        child: FlatButton(child: Text('Coming soon')),
       )
     ];
   }
