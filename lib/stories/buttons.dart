@@ -1,4 +1,3 @@
-
 import 'package:change_ui_kit/story_book/story.dart';
 import 'package:change_ui_kit/story_book/story_page.dart';
 import 'package:change_ui_kit/widgets/button.dart';
@@ -10,7 +9,7 @@ class Buttons extends StoryPage {
     return [
       Story(
         title: 'Large Filled Button',
-        child: Button()
+        child: Text('Coming soon'),
       )
     ];
   }

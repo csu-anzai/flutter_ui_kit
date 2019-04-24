@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
 
-class Button extends StatelessWidget {
+class InternalButton extends StatelessWidget {
+  final Widget child;
+  final VoidCallback onPressed;
+
+  InternalButton({
+    Key key,
+    @required this.child,
+    @required this.onPressed,
+  })  : assert(child != null),
+        assert(onPressed != null),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return const FlatButton(child: Text('test'));
+    return FlatButton(
+      child: child,
+      onPressed: onPressed,
+    );
   }
 }
