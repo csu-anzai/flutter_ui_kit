@@ -23,7 +23,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  storyboard: ^0.0.4
+  recase: ^2.0.1
 
 
 # For information on the generic Dart part of this file, see the

@@ -23,8 +23,8 @@ class AppColor {
   
   static const Color red = Color(0xFFFF6B6B);
 
-  static const Color lightestGray = Color(0xFFEDEFF2);
-  static const Color gray = Color(0xFFE7E7E7);
-  static const Color mediumGray = Color(0xFFE7E7E7);
-  static const Color semiGray = Color(0xFF9DA0A6);
+  static const Color lightestGrey = Color(0xFFEDEFF2);
+  static const Color grey = Color(0xFFE7E7E7);
+  static const Color mediumGrey = Color(0xFFE7E7E7);
+  static const Color semiGrey = Color(0xFF9DA0A6);
 }
