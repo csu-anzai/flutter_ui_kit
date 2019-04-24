@@ -9,13 +9,40 @@ class Buttons extends StoryPage {
     return [
       Story(
         title: 'Large Filled Button',
-        child: FilledButton(
-          child: const Text('Activate'),
-          onPressed: () async {
-            await Future<void>.delayed(const Duration(seconds: 1));
-          },
+        child: Column(
+          children: <Widget>[
+            FilledButton(
+              child: const Text('Activate'),
+              onPressed: () async {
+                await Future<void>.delayed(const Duration(seconds: 1));
+              },
+            ),
+            Divider(),
+            FilledButton(
+              child: const Text('Activate'),
+              onPressed: null,
+            ),
+          ],
         ),
-      )
+      ),
+      Story(
+        title: 'Large Narrow Button',
+        child: Column(
+          children: <Widget>[
+            FilledButton(
+              child: const Text('Activate'),
+              onPressed: () async {
+                await Future<void>.delayed(const Duration(seconds: 1));
+              },
+            ),
+            Divider(),
+            FilledButton(
+              child: const Text('Activate'),
+              onPressed: null,
+            ),
+          ],
+        ),
+      ),
     ];
   }
 }

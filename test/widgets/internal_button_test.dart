@@ -11,8 +11,10 @@ void main() {
     group('child prop', () {
       testWidgets('renders child', (WidgetTester tester) async {
         const title = 'Title';
-        await tester.pumpWidget(_wrapInMaterialApp(
-            InternalButton(child: const Text(title), onPressed: () {})));
+        await tester.pumpWidget(_wrapInMaterialApp(InternalButton(
+          child: const Text(title),
+          onPressed: () {},
+        )));
         expect(find.text(title), findsOneWidget);
       });
     });
@@ -29,6 +31,16 @@ void main() {
         future = completer.future;
         onPressed = FutureCallbackMock().call;
         when(onPressed()).thenAnswer((_) => future);
+      });
+
+      testWidgets('if onPressed is null should pass null to RaisedButton',
+          (WidgetTester tester) async {
+        await tester.pumpWidget(_wrapInMaterialApp(InternalButton(
+          child: Text(title),
+          onPressed: null,
+        )));
+        expect(tester.widget<RaisedButton>(find.byType(RaisedButton)).enabled,
+            isFalse);
       });
 
       testWidgets('on tap calls onPressed prop', (WidgetTester tester) async {
@@ -72,6 +84,39 @@ void main() {
           expect(tester.widget<RaisedButton>(find.byType(RaisedButton)).enabled,
               isTrue);
         });
+      });
+    });
+
+    group('fullWidth prop', () {
+      testWidgets('if true renders in container widget',
+          (WidgetTester tester) async {
+        const title = 'Title';
+        await tester.pumpWidget(_wrapInMaterialApp(InternalButton(
+          child: const Text(title),
+          onPressed: () {},
+          fullWidth: true,
+        )));
+        expect(
+            find.ancestor(
+              of: find.byType(RaisedButton),
+              matching: find.byType(Container),
+            ),
+            findsOneWidget);
+      });
+      testWidgets('if false renders not in container widget',
+          (WidgetTester tester) async {
+        const title = 'Title';
+        await tester.pumpWidget(_wrapInMaterialApp(InternalButton(
+          child: const Text(title),
+          onPressed: () {},
+          fullWidth: false,
+        )));
+        expect(
+            find.ancestor(
+              of: find.byType(RaisedButton),
+              matching: find.byType(Container),
+            ),
+            findsNothing);
       });
     });
   });

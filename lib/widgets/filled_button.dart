@@ -11,7 +11,6 @@ class FilledButton extends StatelessWidget {
     @required this.onPressed,
     Key key,
   })  : assert(child != null),
-        assert(onPressed != null),
         super(key: key);
 
   @override
@@ -19,6 +18,7 @@ class FilledButton extends StatelessWidget {
     return InternalButton(
       child: child,
       onPressed: onPressed,
+      fullWidth: true,
     );
   }
 }
