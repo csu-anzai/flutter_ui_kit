@@ -23,7 +23,7 @@ class _InternalButtonState extends State<InternalButton> {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return RaisedButton(
       child: widget.child,
       onPressed: _enabled ? _handlePress : null,
     );

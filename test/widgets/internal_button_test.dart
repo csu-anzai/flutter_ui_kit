@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:change_ui_kit/theme.dart';
-import 'package:change_ui_kit/widgets/button.dart';
+import 'package:change_ui_kit/widgets/internal_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -64,12 +64,12 @@ void main() {
           )));
           await tester.tap(find.text(title));
           await tester.pump();
-          expect(tester.widget<FlatButton>(find.byType(FlatButton)).enabled,
+          expect(tester.widget<RaisedButton>(find.byType(RaisedButton)).enabled,
               isFalse);
           completer.complete();
           await future;
           await tester.pump();
-          expect(tester.widget<FlatButton>(find.byType(FlatButton)).enabled,
+          expect(tester.widget<RaisedButton>(find.byType(RaisedButton)).enabled,
               isTrue);
         });
       });

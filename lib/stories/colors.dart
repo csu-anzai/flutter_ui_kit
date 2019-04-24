@@ -23,7 +23,7 @@ class AppColors extends StoryPage {
           ),
         ],
       ),
-      StoryGroup(
+      const StoryGroup(
         title: 'Accent Colors',
         children: const <Widget>[
           ColorInfoBox(
@@ -38,7 +38,7 @@ class AppColors extends StoryPage {
           ),
         ],
       ),
-      StoryGroup(
+      const StoryGroup(
         title: 'Semantic Colors',
         children: const <Widget>[
           ColorInfoBox(
@@ -53,7 +53,7 @@ class AppColors extends StoryPage {
           ),
         ],
       ),
-      StoryGroup(
+      const StoryGroup(
         title: 'Grey colors',
         children: const <Widget>[
           ColorInfoBox(

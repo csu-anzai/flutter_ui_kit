@@ -9,4 +9,5 @@ final ThemeData theme = ThemeData(
   canvasColor: AppColor.deepWhite,
   backgroundColor: AppColor.deepWhite,
   scaffoldBackgroundColor: AppColor.deepWhite,
+  disabledColor: AppColor.mediumGrey,
 );
