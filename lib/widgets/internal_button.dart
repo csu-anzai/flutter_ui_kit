@@ -43,6 +43,7 @@ class _InternalButtonState extends State<InternalButton> {
       highlightElevation: 0.0,
       disabledElevation: 0.0,
       textColor: AppColor.deepWhite,
+      disabledTextColor: AppColor.deepWhite,
     );
   }
 
