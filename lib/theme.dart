@@ -19,5 +19,6 @@ ButtonThemeData _buttonTheme = ButtonThemeData(
   textTheme: ButtonTextTheme.primary,
   buttonColor: primaryColor,
   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
+  disabledColor: AppColor.mediumGrey,
+  highlightColor: AppColor.darkerGreen
 );
