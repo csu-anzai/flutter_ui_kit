@@ -9,6 +9,7 @@ typedef WidgetBuilder = Widget Function(
 
 typedef FormBuilder = Widget Function(
   BuildContext context,
+  Map<String, dynamic> props,
   PropUpdater updateProp,
 );
 
@@ -35,7 +36,7 @@ class _PropsExplorerState extends State<PropsExplorer> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        widget.formBuilder(context, _updateProp),
+        widget.formBuilder(context, props, _updateProp),
         widget.widgetBuilder(context, props),
       ],
     );
