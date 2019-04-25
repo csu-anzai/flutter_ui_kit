@@ -8,8 +8,8 @@ void main() {
   group('PropsExplorer', () {
     testWidgets('renders form and widget', (WidgetTester tester) async {
       await tester.pumpWidget(wrapInMaterialApp(PropsExplorer(
-        formBuilder: (updateProp, context) => const Text('Form Builder'),
-        widgetBuilder: (props, context) => const Text('Widget Builder'),
+        formBuilder: (context, updateProp) => const Text('Form Builder'),
+        widgetBuilder: (context, props) => const Text('Widget Builder'),
       )));
       expect(find.text('Form Builder'), findsOneWidget);
       expect(find.text('Widget Builder'), findsOneWidget);
@@ -17,12 +17,12 @@ void main() {
 
     testWidgets('updateProp updates widget', (WidgetTester tester) async {
       await tester.pumpWidget(wrapInMaterialApp(PropsExplorer(
-        formBuilder: (updateProp, context) => TextField(
+        formBuilder: (context, updateProp) => TextField(
               onChanged: (String value) {
                 updateProp('test', value);
               },
             ),
-        widgetBuilder: (props, context) => Text('test: ${props['test']}'),
+        widgetBuilder: (context, props) => Text('test: ${props['test']}'),
       )));
       await tester.enterText(find.byType(TextField), 'hello world');
       await tester.pump();

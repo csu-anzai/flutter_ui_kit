@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 typedef PropUpdater = void Function(String name, dynamic value);
 
 typedef WidgetBuilder = Widget Function(
-  Map<String, dynamic> props,
   BuildContext context,
+  Map<String, dynamic> props,
 );
 
 typedef FormBuilder = Widget Function(
-  PropUpdater updateProp,
   BuildContext context,
+  PropUpdater updateProp,
 );
 
 class PropsExplorer extends StatefulWidget {
@@ -35,8 +35,8 @@ class _PropsExplorerState extends State<PropsExplorer> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        widget.formBuilder(_updateProp, context),
-        widget.widgetBuilder(props, context),
+        widget.formBuilder(context, _updateProp),
+        widget.widgetBuilder(context, props),
       ],
     );
   }
