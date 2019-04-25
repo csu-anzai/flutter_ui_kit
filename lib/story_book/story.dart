@@ -17,9 +17,9 @@ class Story extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(title),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [child],
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: child,
         ),
       ],
     );

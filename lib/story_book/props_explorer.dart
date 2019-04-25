@@ -37,6 +37,7 @@ class _PropsExplorerState extends State<PropsExplorer> {
     return Column(
       children: <Widget>[
         widget.formBuilder(context, props, _updateProp),
+        Divider(),
         widget.widgetBuilder(context, props),
       ],
     );

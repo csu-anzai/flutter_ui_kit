@@ -5,10 +5,12 @@ import 'internal_button.dart';
 class FilledButton extends StatelessWidget {
   final Widget child;
   final FutureCallback onPressed;
+  final bool fullWidth;
 
   FilledButton({
     @required this.child,
     @required this.onPressed,
+    this.fullWidth = true,
     Key key,
   })  : assert(child != null),
         super(key: key);
@@ -18,7 +20,7 @@ class FilledButton extends StatelessWidget {
     return InternalButton(
       child: child,
       onPressed: onPressed,
-      fullWidth: true,
+      fullWidth: fullWidth,
     );
   }
 }
