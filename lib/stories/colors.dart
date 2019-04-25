@@ -21,7 +21,7 @@ class AppColors extends StoryPage {
             name: 'Pale Green 20%',
             usage: 'Disabled Text Button',
           ),
-          ColorInfoBox(
+          const ColorInfoBox(
             color: AppColor.darkerGreen,
             name: 'Darker Green 20%',
             usage: 'Pressed button state',
