@@ -8,11 +8,13 @@ class InternalButton extends StatefulWidget {
   final Widget child;
   final FutureCallback onPressed;
   final bool fullWidth;
+  final bool narrow;
 
   InternalButton({
     @required this.child,
     @required this.onPressed,
     this.fullWidth = true,
+    this.narrow = false,
     Key key,
   })  : assert(child != null),
         super(key: key);
@@ -44,6 +46,9 @@ class _InternalButtonState extends State<InternalButton> {
       disabledElevation: 0.0,
       textColor: AppColor.deepWhite,
       disabledTextColor: AppColor.deepWhite,
+      padding: widget.narrow
+          ? const EdgeInsets.symmetric(vertical: 11.5)
+          : const EdgeInsets.symmetric(vertical: 17.5),
     );
   }
 

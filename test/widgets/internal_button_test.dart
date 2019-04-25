@@ -120,8 +120,41 @@ void main() {
             findsNothing);
       });
     });
+
+    group('narrow prop', () {
+      testWidgets('if true renders smaller padding',
+          (WidgetTester tester) async {
+        const title = 'Title';
+        await tester.pumpWidget(wrapInMaterialApp(InternalButton(
+          child: const Text(title),
+          onPressed: () {},
+          fullWidth: true,
+          narrow: true,
+        )));
+        final button =
+            // ignore: avoid_as
+            find.byType(RaisedButton).evaluate().single.widget as RaisedButton;
+        expect(button.padding, const EdgeInsets.symmetric(vertical: 11.5));
+      });
+
+      testWidgets('if false renders larger padding',
+          (WidgetTester tester) async {
+        const title = 'Title';
+        await tester.pumpWidget(wrapInMaterialApp(InternalButton(
+          child: const Text(title),
+          onPressed: () {},
+          fullWidth: true,
+          narrow: false,
+        )));
+        final button =
+            // ignore: avoid_as
+            find.byType(RaisedButton).evaluate().single.widget as RaisedButton;
+        expect(button.padding, const EdgeInsets.symmetric(vertical: 17.5));
+      });
+    });
   });
 }
+
 class FutureCallbackMock extends Mock implements Function {
   Future<void> call();
 }
