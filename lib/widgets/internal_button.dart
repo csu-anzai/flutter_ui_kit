@@ -41,14 +41,16 @@ class _InternalButtonState extends State<InternalButton> {
     return RaisedButton(
       child: widget.child,
       onPressed: _disabled() ? null : _handlePress,
+      padding: widget.narrow
+          ? const EdgeInsets.symmetric(vertical: 11.5, horizontal: 48.0)
+          : const EdgeInsets.symmetric(vertical: 17.5, horizontal: 48.0),
       elevation: 0.0,
       highlightElevation: 0.0,
       disabledElevation: 0.0,
       textColor: AppColor.deepWhite,
       disabledTextColor: AppColor.deepWhite,
-      padding: widget.narrow
-          ? const EdgeInsets.symmetric(vertical: 11.5)
-          : const EdgeInsets.symmetric(vertical: 17.5),
+      disabledColor: AppColor.mediumGrey,
+      highlightColor: AppColor.darkerGreen
     );
   }
 

@@ -134,7 +134,7 @@ void main() {
         final button =
             // ignore: avoid_as
             find.byType(RaisedButton).evaluate().single.widget as RaisedButton;
-        expect(button.padding, const EdgeInsets.symmetric(vertical: 11.5));
+        expect(button.padding, const EdgeInsets.symmetric(vertical: 11.5, horizontal: 48.0));
       });
 
       testWidgets('if false renders larger padding',
@@ -149,7 +149,7 @@ void main() {
         final button =
             // ignore: avoid_as
             find.byType(RaisedButton).evaluate().single.widget as RaisedButton;
-        expect(button.padding, const EdgeInsets.symmetric(vertical: 17.5));
+        expect(button.padding, const EdgeInsets.symmetric(vertical: 17.5, horizontal: 48.0));
       });
     });
   });
