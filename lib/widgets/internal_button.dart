@@ -7,7 +7,7 @@ typedef FutureCallback = Future<void> Function();
 class InternalButton extends StatefulWidget {
   final Widget child;
   final FutureCallback onPressed;
-  bool fullWidth;
+  final bool fullWidth;
 
   InternalButton({
     @required this.child,
