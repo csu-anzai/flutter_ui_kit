@@ -14,16 +14,17 @@ typedef FormBuilder = Widget Function(
 );
 
 class PropsExplorer extends StatefulWidget {
+  final Map<String, dynamic> initialProps;
   final WidgetBuilder widgetBuilder;
   final FormBuilder formBuilder;
-  final Map<String, dynamic> initialProps;
 
   PropsExplorer({
+    @required this.initialProps,
     @required this.widgetBuilder,
     @required this.formBuilder,
-    this.initialProps,
     Key key,
-  })  : assert(widgetBuilder != null),
+  })  : assert(initialProps != null),
+        assert(widgetBuilder != null),
         assert(formBuilder != null),
         super(key: key);
 
