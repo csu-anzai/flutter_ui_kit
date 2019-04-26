@@ -1,10 +1,8 @@
-import 'package:flutter_ui_kit/color.dart';
 import 'package:flutter_ui_kit/widgets/button_common.dart';
 import 'package:flutter_ui_kit/widgets/outlined_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../wrap_in_material_app.dart';
 import 'common_button_tests.dart';
 
 void main() {
