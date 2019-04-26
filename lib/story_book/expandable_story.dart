@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Story extends StatelessWidget {
+class ExpandableStory extends StatelessWidget {
   final String title;
   final Widget child;
 
-  const Story({
+  const ExpandableStory({
     @required this.child,
     @required this.title,
   })  : assert(child != null),
@@ -13,15 +13,13 @@ class Story extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Text(title, style: TextStyle(fontSize: 24.0)),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
+    return ExpansionTile(
+      title: Text(title),
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 24.0),
           child: child,
         ),
-        const Divider(height: 32.0,),
       ],
     );
   }

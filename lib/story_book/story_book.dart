@@ -1,9 +1,8 @@
-import 'package:flutter_ui_kit/story_book/story_page.dart';
 import 'package:flutter/material.dart';
 import 'package:recase/recase.dart';
 
 class StoryBook extends StatelessWidget {
-  final List<StoryPage> pages;
+  final List<Widget> pages;
   final String title;
 
   StoryBook({
@@ -24,7 +23,7 @@ class StoryBook extends StatelessWidget {
         ));
   }
 
-  ListTile _pageOpener(BuildContext context, StoryPage page) {
+  ListTile _pageOpener(BuildContext context, Widget page) {
     final title = _getTitle(page);
     final titleWidget = Text(title);
     return ListTile(
@@ -43,6 +42,6 @@ class StoryBook extends StatelessWidget {
         });
   }
 
-  String _getTitle(StoryPage page) =>
+  String _getTitle(Widget page) =>
       ReCase(page.runtimeType.toString()).titleCase;
 }

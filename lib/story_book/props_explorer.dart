@@ -48,7 +48,10 @@ class _PropsExplorerState extends State<PropsExplorer> {
       children: <Widget>[
         widget.formBuilder(context, _props, _updateProp),
         Divider(),
-        widget.widgetBuilder(context, _props),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 24.0),
+          child: widget.widgetBuilder(context, _props),
+        ),
       ],
     );
   }

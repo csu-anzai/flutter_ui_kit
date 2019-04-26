@@ -1,15 +1,34 @@
 import 'package:flutter_ui_kit/color.dart';
-import 'package:flutter_ui_kit/story_book/story_page.dart';
-import 'package:flutter_ui_kit/story_book/story_group.dart';
+import 'package:flutter_ui_kit/story_book/story.dart';
 import 'package:flutter/material.dart';
 
-class AppColors extends StoryPage {
+class AppColors extends StatelessWidget {
   @override
-  List<Widget> get storyContent {
-    return [
-      StoryGroup(
-        title: 'Primary Colors',
-        children: <Widget>[
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _primaryColors(),
+            _accentColors(),
+            _semanticColors(),
+            _greyColors(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _primaryColors() {
+    return Story(
+      title: 'Primary Colors',
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
           const ColorInfoBox(
             color: AppColor.green,
             name: 'Green',
@@ -22,14 +41,22 @@ class AppColors extends StoryPage {
           ),
           const ColorInfoBox(
             color: AppColor.darkerGreen,
-            name: 'Darker Green 20%',
+            name: 'Darker Green',
             usage: 'Pressed button state',
           ),
         ],
       ),
-      const StoryGroup(
-        title: 'Accent Colors',
-        children: const <Widget>[
+    );
+  }
+
+  Widget _accentColors() {
+    return Story(
+      title: 'Accent Colors',
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
           ColorInfoBox(
             color: AppColor.deepBlack,
             name: 'Deep Black',
@@ -42,9 +69,17 @@ class AppColors extends StoryPage {
           ),
         ],
       ),
-      const StoryGroup(
-        title: 'Semantic Colors',
-        children: const <Widget>[
+    );
+  }
+
+  Widget _semanticColors() {
+    return Story(
+      title: 'Semantic Colors',
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
           ColorInfoBox(
             color: AppColor.red,
             name: 'Red',
@@ -57,32 +92,42 @@ class AppColors extends StoryPage {
           ),
         ],
       ),
-      const StoryGroup(
-        title: 'Grey colors',
-        children: const <Widget>[
-          ColorInfoBox(
-            color: AppColor.lightestGrey,
-            name: 'Lightest grey',
-            usage: 'Dividers & Failed Transactions',
-          ),
-          ColorInfoBox(
-            color: AppColor.grey,
-            name: 'Grey',
-            usage: 'Placeholder',
-          ),
-          ColorInfoBox(
-            color: AppColor.mediumGrey,
-            name: 'Medium Grey',
-            usage: 'Disables buttons',
-          ),
-          ColorInfoBox(
-            color: AppColor.semiGrey,
-            name: 'Semi Grey',
-            usage: 'Text & Icons',
-          ),
-        ],
+    );
+  }
+
+  Widget _greyColors() {
+    return Story(
+      title: 'Grey Colors',
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            ColorInfoBox(
+              color: AppColor.lightestGrey,
+              name: 'Lightest grey',
+              usage: 'Dividers & Failed Transactions',
+            ),
+            ColorInfoBox(
+              color: AppColor.grey,
+              name: 'Grey',
+              usage: 'Placeholder',
+            ),
+            ColorInfoBox(
+              color: AppColor.mediumGrey,
+              name: 'Medium Grey',
+              usage: 'Disables buttons',
+            ),
+            ColorInfoBox(
+              color: AppColor.semiGrey,
+              name: 'Semi Grey',
+              usage: 'Text & Icons',
+            ),
+          ],
+        ),
       ),
-    ];
+    );
   }
 }
 

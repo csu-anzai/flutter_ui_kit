@@ -1,26 +1,30 @@
+import 'package:flutter_ui_kit/story_book/expandable_story.dart';
 import 'package:flutter_ui_kit/story_book/prop_updater/bool_prop_updater.dart';
 import 'package:flutter_ui_kit/story_book/prop_updater/int_prop_updater.dart';
 import 'package:flutter_ui_kit/story_book/prop_updater/string_prop_updater.dart';
 import 'package:flutter_ui_kit/story_book/props_explorer.dart';
-import 'package:flutter_ui_kit/story_book/story.dart';
-import 'package:flutter_ui_kit/story_book/story_page.dart';
 import 'package:flutter_ui_kit/widgets/filled_button.dart';
 import 'package:flutter_ui_kit/widgets/outlined_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_kit/widgets/plain_button.dart';
 
-class Buttons extends StoryPage {
+class Buttons extends StatelessWidget {
   @override
-  List<Widget> get storyContent {
-    return [
-      _filledButtonStory(),
-      _outlinedButtonStory(),
-      _plainButtonStory(),
-    ];
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _filledButtonStory(),
+          _outlinedButtonStory(),
+          _plainButtonStory(),
+        ],
+      ),
+    );
   }
 
   Widget _filledButtonStory() {
-    return Story(
+    return ExpandableStory(
       title: 'Filled Button',
       child: PropsExplorer(
         initialProps: const <String, dynamic>{
@@ -40,6 +44,12 @@ class Buttons extends StoryPage {
                 updateProp: updateProp,
                 propKey: 'text',
               ),
+              IntPropUpdater(
+                props: props,
+                updateProp: updateProp,
+                propKey: 'taskDuration',
+                hintText: 'Simulate task with duration in milliseconds',
+              ),
               BoolPropUpdater(
                 props: props,
                 updateProp: updateProp,
@@ -54,12 +64,6 @@ class Buttons extends StoryPage {
                 props: props,
                 updateProp: updateProp,
                 propKey: 'narrow',
-              ),
-              IntPropUpdater(
-                props: props,
-                updateProp: updateProp,
-                propKey: 'taskDuration',
-                hintText: 'Simulate task with duration in milliseconds',
               ),
             ],
           );
@@ -90,7 +94,7 @@ class Buttons extends StoryPage {
   }
 
   Widget _outlinedButtonStory() {
-    return Story(
+    return ExpandableStory(
       title: 'Outlined Button',
       child: PropsExplorer(
         initialProps: const <String, dynamic>{
@@ -110,6 +114,12 @@ class Buttons extends StoryPage {
                 updateProp: updateProp,
                 propKey: 'text',
               ),
+              IntPropUpdater(
+                props: props,
+                updateProp: updateProp,
+                propKey: 'taskDuration',
+                hintText: 'Simulate task with duration in milliseconds',
+              ),
               BoolPropUpdater(
                 props: props,
                 updateProp: updateProp,
@@ -124,12 +134,6 @@ class Buttons extends StoryPage {
                 props: props,
                 updateProp: updateProp,
                 propKey: 'narrow',
-              ),
-              IntPropUpdater(
-                props: props,
-                updateProp: updateProp,
-                propKey: 'taskDuration',
-                hintText: 'Simulate task with duration in milliseconds',
               ),
             ],
           );
@@ -160,7 +164,7 @@ class Buttons extends StoryPage {
   }
 
   Widget _plainButtonStory() {
-    return Story(
+    return ExpandableStory(
       title: 'Plain Button',
       child: PropsExplorer(
         initialProps: const <String, dynamic>{
@@ -179,6 +183,12 @@ class Buttons extends StoryPage {
                 updateProp: updateProp,
                 propKey: 'text',
               ),
+              IntPropUpdater(
+                props: props,
+                updateProp: updateProp,
+                propKey: 'taskDuration',
+                hintText: 'Simulate task with duration in milliseconds',
+              ),
               BoolPropUpdater(
                 props: props,
                 updateProp: updateProp,
@@ -188,12 +198,6 @@ class Buttons extends StoryPage {
                 props: props,
                 updateProp: updateProp,
                 propKey: 'narrow',
-              ),
-              IntPropUpdater(
-                props: props,
-                updateProp: updateProp,
-                propKey: 'taskDuration',
-                hintText: 'Simulate task with duration in milliseconds',
               ),
             ],
           );

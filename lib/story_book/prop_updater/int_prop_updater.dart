@@ -38,15 +38,19 @@ class _IntPropUpdaterState extends State<IntPropUpdater> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        labelText: _getLabel(),
-        hintText: widget.hintText.isNotEmpty ? widget.hintText : _getLabel(),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: TextField(
+        controller: _controller,
+        decoration: InputDecoration(
+          labelText: _getLabel(),
+          hintText: widget.hintText.isNotEmpty ? widget.hintText : _getLabel(),
+        ),
+        keyboardType: TextInputType.number,
+        onChanged: (String value) {
+          widget.updateProp(widget.propKey, int.tryParse(value) ?? widget.props[widget.propKey]);
+        },
       ),
-      keyboardType: TextInputType.number,
-      onChanged: (String value) {
-        widget.updateProp(widget.propKey, int.tryParse(value) ?? widget.props[widget.propKey]);
-      },
     );
   }
 

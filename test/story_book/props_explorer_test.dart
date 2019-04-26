@@ -8,6 +8,7 @@ void main() {
   group('PropsExplorer', () {
     testWidgets('renders form and widget', (WidgetTester tester) async {
       await tester.pumpWidget(wrapInMaterialApp(PropsExplorer(
+        initialProps: const <String, dynamic>{},
         formBuilder: (context, props, updateProp) => const Text('Form Builder'),
         widgetBuilder: (context, props) => const Text('Widget Builder'),
       )));
@@ -27,6 +28,7 @@ void main() {
 
     testWidgets('updateProp updates widget', (WidgetTester tester) async {
       await tester.pumpWidget(wrapInMaterialApp(PropsExplorer(
+        initialProps: const <String, dynamic>{},
         formBuilder: (context, props, updateProp) => TextField(
               onChanged: (String value) {
                 updateProp('test', value);
