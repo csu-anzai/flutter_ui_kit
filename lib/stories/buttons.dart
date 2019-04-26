@@ -81,14 +81,14 @@ class Buttons extends StoryPage {
 
           if (buttonType == ButtonType.filled) {
             return FilledButton(
-              child: Text(props['title'] ?? 'Button'),
+              props['title'] ?? 'Button',
               onPressed: onPressed,
               fullWidth: props['fullWidth'] ?? true,
               narrow: props['narrow'] ?? false,
             );
           } else {
             return FilledButton(
-              child: Text(props['title'] ?? 'Button'),
+              props['title'] ?? 'Button',
               onPressed: onPressed,
               fullWidth: props['fullWidth'] ?? true,
               narrow: props['narrow'] ?? false,
