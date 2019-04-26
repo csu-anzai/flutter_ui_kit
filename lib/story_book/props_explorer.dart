@@ -16,10 +16,12 @@ typedef FormBuilder = Widget Function(
 class PropsExplorer extends StatefulWidget {
   final WidgetBuilder widgetBuilder;
   final FormBuilder formBuilder;
+  final Map<String, dynamic> initialProps;
 
   PropsExplorer({
     @required this.widgetBuilder,
     @required this.formBuilder,
+    this.initialProps,
     Key key,
   })  : assert(widgetBuilder != null),
         assert(formBuilder != null),
@@ -30,24 +32,31 @@ class PropsExplorer extends StatefulWidget {
 }
 
 class _PropsExplorerState extends State<PropsExplorer> {
-  Map<String, dynamic> props = <String, dynamic>{};
+  Map<String, dynamic> _props;
+
+  @override
+  void initState() {
+    _props =
+        widget.initialProps != null ? widget.initialProps : <String, dynamic>{};
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        widget.formBuilder(context, props, _updateProp),
+        widget.formBuilder(context, _props, _updateProp),
         Divider(),
-        widget.widgetBuilder(context, props),
+        widget.widgetBuilder(context, _props),
       ],
     );
   }
 
   void _updateProp(String name, dynamic value) {
     setState(() {
-      final newProps = Map<String, dynamic>.from(props);
+      final newProps = Map<String, dynamic>.from(_props);
       newProps[name] = value;
-      props = newProps;
+      _props = newProps;
     });
   }
 }

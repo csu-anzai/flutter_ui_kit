@@ -15,6 +15,16 @@ void main() {
       expect(find.text('Widget Builder'), findsOneWidget);
     });
 
+    testWidgets('renders widget with initialProps', (WidgetTester tester) async {
+      await tester.pumpWidget(wrapInMaterialApp(PropsExplorer(
+        initialProps: const <String, dynamic>{ 'text': 'Initial Prop' },
+        formBuilder: (context, props, updateProp) => const Text('Form Builder'),
+        widgetBuilder: (context, props) => Text(props['text']),
+      )));
+      expect(find.text('Form Builder'), findsOneWidget);
+      expect(find.text('Initial Prop'), findsOneWidget);
+    });
+
     testWidgets('updateProp updates widget', (WidgetTester tester) async {
       await tester.pumpWidget(wrapInMaterialApp(PropsExplorer(
         formBuilder: (context, props, updateProp) => TextField(
