@@ -2,6 +2,7 @@ import 'package:change_ui_kit/story_book/props_explorer.dart';
 import 'package:change_ui_kit/story_book/story.dart';
 import 'package:change_ui_kit/story_book/story_page.dart';
 import 'package:change_ui_kit/widgets/filled_button.dart';
+import 'package:change_ui_kit/widgets/outlined_button.dart';
 import 'package:flutter/material.dart';
 
 class Buttons extends StoryPage {
@@ -87,7 +88,7 @@ class Buttons extends StoryPage {
               narrow: props['narrow'] ?? false,
             );
           } else {
-            return FilledButton(
+            return OutlinedButton(
               props['title'] ?? 'Button',
               onPressed: onPressed,
               fullWidth: props['fullWidth'] ?? true,

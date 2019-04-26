@@ -1,11 +1,9 @@
-import 'dart:async';
-
 import 'package:change_ui_kit/widgets/button_common.dart';
 import 'package:change_ui_kit/widgets/filled_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'common_button_test.dart';
+import 'common_button_tests.dart';
 
 void main() {
   group('FilledButton', () {

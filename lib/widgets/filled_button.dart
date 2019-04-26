@@ -37,12 +37,15 @@ class _FilledButtonState extends State<FilledButton> with ButtonMixin {
     return RaisedButton(
       child: Text(
         widget.text,
-        style: TextStyle(color: AppColor.green, fontSize: 16.0),
+        style: TextStyle(
+          color: AppColor.deepWhite,
+          fontSize: ButtonStyleConstants.fontSize,
+        ),
       ),
       onPressed: isDisabled(enabled: _enabled, onPressed: widget.onPressed)
           ? null
-          : () =>
-              handlePress(setEnabled: _setEnabled, onPressed: widget.onPressed),
+          : () => disableButtonWhileOnPressedExecutes(
+              setEnabled: _setEnabled, onPressed: widget.onPressed),
       padding: getPadding(narrow: widget.narrow),
       elevation: 0.0,
       highlightElevation: 0.0,

@@ -150,7 +150,7 @@ void testNarrowProp({
           // ignore: avoid_as
           find.byType(underlyingMaterialButtonType).evaluate().single.widget
               as MaterialButton;
-      expect(button.padding, ButtonPadding.narrowPadding);
+      expect(button.padding, ButtonStyleConstants.narrowPadding);
     });
 
     testWidgets('if false renders larger padding', (WidgetTester tester) async {
@@ -159,7 +159,7 @@ void testNarrowProp({
           // ignore: avoid_as
           find.byType(underlyingMaterialButtonType).evaluate().single.widget
               as MaterialButton;
-      expect(button.padding, ButtonPadding.widePadding);
+      expect(button.padding, ButtonStyleConstants.widePadding);
     });
   });
 }
