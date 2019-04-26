@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:change_ui_kit/widgets/button_common.dart';
+import 'package:flutter_ui_kit/widgets/button_common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

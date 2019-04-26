@@ -1,4 +1,4 @@
-package com.example.change_ui_kit;
+package com.getchange.flutter_ui_kit;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

@@ -1,4 +1,4 @@
-import 'package:change_ui_kit/story_book/props_explorer.dart';
+import 'package:flutter_ui_kit/story_book/props_explorer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

@@ -1,4 +1,4 @@
-import 'package:change_ui_kit/story_book/story_page.dart';
+import 'package:flutter_ui_kit/story_book/story_page.dart';
 import 'package:flutter/material.dart';
 import 'package:recase/recase.dart';
 

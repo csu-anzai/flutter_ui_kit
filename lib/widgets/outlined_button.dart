@@ -1,4 +1,4 @@
-import 'package:change_ui_kit/color.dart';
+import 'package:flutter_ui_kit/color.dart';
 import 'package:flutter/material.dart';
 
 import 'button_common.dart';

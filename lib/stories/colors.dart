@@ -1,6 +1,6 @@
-import 'package:change_ui_kit/color.dart';
-import 'package:change_ui_kit/story_book/story_page.dart';
-import 'package:change_ui_kit/story_book/story_group.dart';
+import 'package:flutter_ui_kit/color.dart';
+import 'package:flutter_ui_kit/story_book/story_page.dart';
+import 'package:flutter_ui_kit/story_book/story_group.dart';
 import 'package:flutter/material.dart';
 
 class AppColors extends StoryPage {
