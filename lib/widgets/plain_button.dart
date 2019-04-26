@@ -3,34 +3,29 @@ import 'package:flutter/material.dart';
 
 import 'button_common.dart';
 
-class OutlinedButton extends StatefulWidget {
+class PlainButton extends StatefulWidget {
   final String text;
   final FutureCallback onPressed;
-  final bool fullWidth;
   final bool narrow;
 
-  OutlinedButton(
+  PlainButton(
     this.text, {
     @required this.onPressed,
-    this.fullWidth = true,
     this.narrow = false,
     Key key,
   })  : assert(text != null),
         super(key: key);
 
   @override
-  _OutlinedButtonState createState() => _OutlinedButtonState();
+  _PlainButtonState createState() => _PlainButtonState();
 }
 
-class _OutlinedButtonState extends State<OutlinedButton> with ButtonMixin {
+class _PlainButtonState extends State<PlainButton> with ButtonMixin {
   bool _enabled = true;
   bool _pressing = false;
 
   @override
   Widget build(BuildContext context) {
-    if (widget.fullWidth) {
-      return wrapInFullWidthContainer(context, _buildButton());
-    }
     return _buildButton();
   }
 
@@ -42,7 +37,7 @@ class _OutlinedButtonState extends State<OutlinedButton> with ButtonMixin {
       onTapCancel: () {
         setState(() => _pressing = false);
       },
-      child: OutlineButton(
+      child: FlatButton(
         child: Text(
           widget.text,
           style: TextStyle(
@@ -60,9 +55,6 @@ class _OutlinedButtonState extends State<OutlinedButton> with ButtonMixin {
                 setEnabled: _setEnabled, onPressed: widget.onPressed),
         padding: getPadding(narrow: widget.narrow),
         textColor: AppColor.green,
-        borderSide: BorderSide(color: AppColor.green),
-        highlightedBorderColor: AppColor.green,
-        disabledBorderColor: AppColor.mediumGrey,
       ),
     );
   }

@@ -1,14 +1,12 @@
-import 'package:flutter_ui_kit/color.dart';
 import 'package:flutter_ui_kit/widgets/button_common.dart';
-import 'package:flutter_ui_kit/widgets/outlined_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_ui_kit/widgets/plain_button.dart';
 
-import '../wrap_in_material_app.dart';
 import 'common_button_tests.dart';
 
 void main() {
-  group('OutlinedButton', () {
+  group('PlainButton', () {
     const buttonText = 'Click me';
 
     testPressingState(
@@ -17,7 +15,7 @@ void main() {
       testWidgets: testWidgets,
       buttonText: buttonText,
       buildButton: ({FutureCallback onPressed}) =>
-          OutlinedButton(buttonText, onPressed: onPressed),
+          PlainButton(buttonText, onPressed: onPressed),
     );
 
     testTextProp(
@@ -25,7 +23,7 @@ void main() {
       setUp: setUp,
       testWidgets: testWidgets,
       buttonText: buttonText,
-      buildButton: () => OutlinedButton(buttonText, onPressed: () {}),
+      buildButton: () => PlainButton(buttonText, onPressed: () {}),
     );
 
     testOnPressedProp(
@@ -34,18 +32,8 @@ void main() {
       testWidgets: testWidgets,
       buttonText: buttonText,
       buildButton: ({FutureCallback onPressed}) =>
-          OutlinedButton(buttonText, onPressed: onPressed),
-      underlyingMaterialButtonType: OutlineButton,
-    );
-
-    testFullWidthProp(
-      group: group,
-      setUp: setUp,
-      testWidgets: testWidgets,
-      buttonText: buttonText,
-      buildButton: ({bool fullWidth}) =>
-          OutlinedButton(buttonText, onPressed: () {}, fullWidth: fullWidth),
-      underlyingMaterialButtonType: OutlineButton,
+          PlainButton(buttonText, onPressed: onPressed),
+      underlyingMaterialButtonType: FlatButton,
     );
 
     testNarrowProp(
@@ -54,8 +42,8 @@ void main() {
       testWidgets: testWidgets,
       buttonText: buttonText,
       buildButton: ({bool narrow}) =>
-          OutlinedButton(buttonText, onPressed: () {}, narrow: narrow),
-      underlyingMaterialButtonType: OutlineButton,
+          PlainButton(buttonText, onPressed: () {}, narrow: narrow),
+      underlyingMaterialButtonType: FlatButton,
     );
   });
 }

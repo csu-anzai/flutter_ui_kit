@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_kit/color.dart';
 
 typedef FutureCallback = Future<void> Function();
 
@@ -30,6 +31,14 @@ mixin ButtonMixin {
   }) {
     return !enabled || onPressed == null;
   }
+
+  Color getTextColorOnWhiteBackground({bool enabled, bool pressing, FutureCallback onPressed}) {
+    if (isDisabled(enabled: enabled, onPressed: onPressed)) {
+      return AppColor.mediumGrey;
+    }
+    return pressing ? AppColor.darkerGreen : AppColor.green;
+  }
+
 
   Future<void> disableButtonWhileOnPressedExecutes({
     EnabledSetter setEnabled,
