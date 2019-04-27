@@ -30,31 +30,34 @@ class _PlainButtonState extends State<PlainButton> with ButtonMixin {
   }
 
   Widget _buildButton() {
-    return GestureDetector(
-      onTapDown: (_) {
-        setState(() => _pressing = true);
-      },
-      onTapCancel: () {
-        setState(() => _pressing = false);
-      },
-      child: FlatButton(
-        child: Text(
-          widget.text,
-          style: TextStyle(
-            color: getTextColorOnWhiteBackground(
-              enabled: _enabled,
-              pressing: _pressing,
-              onPressed: widget.onPressed,
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: GestureDetector(
+        onTapDown: (_) {
+          setState(() => _pressing = true);
+        },
+        onTapCancel: () {
+          setState(() => _pressing = false);
+        },
+        child: FlatButton(
+          child: Text(
+            widget.text,
+            style: TextStyle(
+              color: getTextColorOnWhiteBackground(
+                enabled: _enabled,
+                pressing: _pressing,
+                onPressed: widget.onPressed,
+              ),
+              fontSize: ButtonStyleConstants.fontSize,
             ),
-            fontSize: ButtonStyleConstants.fontSize,
           ),
+          onPressed: isDisabled(enabled: _enabled, onPressed: widget.onPressed)
+              ? null
+              : () => disableButtonWhileOnPressedExecutes(
+                  setEnabled: _setEnabled, onPressed: widget.onPressed),
+          padding: getPadding(narrow: widget.narrow),
+          textColor: AppColor.green,
         ),
-        onPressed: isDisabled(enabled: _enabled, onPressed: widget.onPressed)
-            ? null
-            : () => disableButtonWhileOnPressedExecutes(
-                setEnabled: _setEnabled, onPressed: widget.onPressed),
-        padding: getPadding(narrow: widget.narrow),
-        textColor: AppColor.green,
       ),
     );
   }

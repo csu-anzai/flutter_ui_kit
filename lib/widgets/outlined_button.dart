@@ -35,34 +35,37 @@ class _OutlinedButtonState extends State<OutlinedButton> with ButtonMixin {
   }
 
   Widget _buildButton() {
-    return GestureDetector(
-      onTapDown: (_) {
-        setState(() => _pressing = true);
-      },
-      onTapCancel: () {
-        setState(() => _pressing = false);
-      },
-      child: OutlineButton(
-        child: Text(
-          widget.text,
-          style: TextStyle(
-            color: getTextColorOnWhiteBackground(
-              enabled: _enabled,
-              pressing: _pressing,
-              onPressed: widget.onPressed,
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: GestureDetector(
+        onTapDown: (_) {
+          setState(() => _pressing = true);
+        },
+        onTapCancel: () {
+          setState(() => _pressing = false);
+        },
+        child: OutlineButton(
+          child: Text(
+            widget.text,
+            style: TextStyle(
+              color: getTextColorOnWhiteBackground(
+                enabled: _enabled,
+                pressing: _pressing,
+                onPressed: widget.onPressed,
+              ),
+              fontSize: ButtonStyleConstants.fontSize,
             ),
-            fontSize: ButtonStyleConstants.fontSize,
           ),
+          onPressed: isDisabled(enabled: _enabled, onPressed: widget.onPressed)
+              ? null
+              : () => disableButtonWhileOnPressedExecutes(
+                  setEnabled: _setEnabled, onPressed: widget.onPressed),
+          padding: getPadding(narrow: widget.narrow),
+          textColor: AppColor.green,
+          borderSide: BorderSide(color: AppColor.green),
+          highlightedBorderColor: AppColor.green,
+          disabledBorderColor: AppColor.mediumGrey,
         ),
-        onPressed: isDisabled(enabled: _enabled, onPressed: widget.onPressed)
-            ? null
-            : () => disableButtonWhileOnPressedExecutes(
-                setEnabled: _setEnabled, onPressed: widget.onPressed),
-        padding: getPadding(narrow: widget.narrow),
-        textColor: AppColor.green,
-        borderSide: BorderSide(color: AppColor.green),
-        highlightedBorderColor: AppColor.green,
-        disabledBorderColor: AppColor.mediumGrey,
       ),
     );
   }
