@@ -35,7 +35,7 @@ class _FilledButtonState extends State<FilledButton> with ButtonMixin {
 
   Widget _buildButton() {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
       child: RaisedButton(
         child: Text(
           widget.text,
