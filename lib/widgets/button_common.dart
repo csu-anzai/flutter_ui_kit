@@ -14,12 +14,7 @@ class ButtonStyleConstants {
 }
 
 mixin ButtonMixin {
-  Container wrapInFullWidthContainer(BuildContext context, Widget child) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      child: child,
-    );
-  }
+  double matchParentWidth(BuildContext context) => MediaQuery.of(context).size.width;
 
   EdgeInsetsGeometry getPadding({bool narrow = false}) {
     return narrow ? ButtonStyleConstants.narrowPadding : ButtonStyleConstants.widePadding;

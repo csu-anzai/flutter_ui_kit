@@ -112,26 +112,29 @@ void testFullWidthProp({
   Type underlyingMaterialButtonType,
 }) {
   group('fullWidth prop', () {
-    testWidgets('if true renders in container widget',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(wrapInMaterialApp(buildButton(fullWidth: true)));
-      expect(
-          find.ancestor(
-            of: find.byType(underlyingMaterialButtonType),
-            matching: find.byType(Container),
-          ),
-          findsOneWidget);
+    TestWidgetsFlutterBinding binding;
+
+    setUp(() {
+      binding = TestWidgetsFlutterBinding.ensureInitialized();
+      binding.window.physicalSizeTestValue = const Size(400, 200);
+      binding.window.devicePixelRatioTestValue = 1.0;
     });
 
-    testWidgets('if false renders not in container widget',
+    testWidgets('if true renders in full width',
         (WidgetTester tester) async {
-      await tester.pumpWidget(wrapInMaterialApp(buildButton(fullWidth: false)));
-      expect(
-          find.ancestor(
-            of: find.byType(underlyingMaterialButtonType),
-            matching: find.byType(Container),
-          ),
-          findsNothing);
+      final Widget button = buildButton(fullWidth: true);
+      await tester.pumpWidget(wrapInMaterialApp(button));
+      final buttonWidth = tester.element(find.byType(button.runtimeType)).size.width;
+      expect(buttonWidth, 400.0);
+    });
+
+    testWidgets('if false does not render full width',
+        (WidgetTester tester) async {
+      final Widget button = buildButton(fullWidth: false);
+      await tester.pumpWidget(wrapInMaterialApp(button));
+      
+      final buttonWidth = tester.element(find.byType(button.runtimeType)).size.width;
+      expect(buttonWidth, 224.0);
     });
   });
 }
@@ -172,41 +175,38 @@ void testPressingState({
   String buttonText,
   Function buildButton,
 }) {
-    group('pressing state', () {
-      testWidgets('when button is pressed it changes text color',
-          (WidgetTester tester) async {
-        await tester.pumpWidget(
-            wrapInMaterialApp(buildButton(onPressed: () {})));
-        expect(tester.widget<Text>(find.text(buttonText)).style.color,
-            AppColor.green);
-        final gesture = await tester.createGesture();
-        await gesture.down(tester.getCenter(find.text(buttonText)));
-        await tester.pumpAndSettle(const Duration(seconds: 1));
-        expect(tester.widget<Text>(find.text(buttonText)).style.color,
-            AppColor.darkerGreen);
-        await gesture.up();
-        await tester.pumpAndSettle(const Duration(seconds: 1));
-        expect(tester.widget<Text>(find.text(buttonText)).style.color,
-            AppColor.green);
-      });
-
-      testWidgets(
-          'if button is disabled should have grey text regardless of tap events',
-          (WidgetTester tester) async {
-        await tester.pumpWidget(
-            wrapInMaterialApp(buildButton(onPressed: null)));
-        expect(tester.widget<Text>(find.text(buttonText)).style.color,
-            AppColor.mediumGrey);
-        final gesture = await tester.createGesture();
-        await gesture.down(tester.getCenter(find.text(buttonText)));
-        await tester.pumpAndSettle(const Duration(seconds: 1));
-        expect(tester.widget<Text>(find.text(buttonText)).style.color,
-            AppColor.mediumGrey);
-        await gesture.up();
-        await tester.pumpAndSettle(const Duration(seconds: 1));
-        expect(tester.widget<Text>(find.text(buttonText)).style.color,
-            AppColor.mediumGrey);
-      });
+  group('pressing state', () {
+    testWidgets('when button is pressed it changes text color',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(wrapInMaterialApp(buildButton(onPressed: () {})));
+      expect(tester.widget<Text>(find.text(buttonText)).style.color,
+          AppColor.green);
+      final gesture = await tester.createGesture();
+      await gesture.down(tester.getCenter(find.text(buttonText)));
+      await tester.pumpAndSettle(const Duration(seconds: 1));
+      expect(tester.widget<Text>(find.text(buttonText)).style.color,
+          AppColor.darkerGreen);
+      await gesture.up();
+      await tester.pumpAndSettle(const Duration(seconds: 1));
+      expect(tester.widget<Text>(find.text(buttonText)).style.color,
+          AppColor.green);
     });
-}
 
+    testWidgets(
+        'if button is disabled should have grey text regardless of tap events',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(wrapInMaterialApp(buildButton(onPressed: null)));
+      expect(tester.widget<Text>(find.text(buttonText)).style.color,
+          AppColor.mediumGrey);
+      final gesture = await tester.createGesture();
+      await gesture.down(tester.getCenter(find.text(buttonText)));
+      await tester.pumpAndSettle(const Duration(seconds: 1));
+      expect(tester.widget<Text>(find.text(buttonText)).style.color,
+          AppColor.mediumGrey);
+      await gesture.up();
+      await tester.pumpAndSettle(const Duration(seconds: 1));
+      expect(tester.widget<Text>(find.text(buttonText)).style.color,
+          AppColor.mediumGrey);
+    });
+  });
+}

@@ -27,14 +27,8 @@ class _FilledButtonState extends State<FilledButton> with ButtonMixin {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.fullWidth) {
-      return wrapInFullWidthContainer(context, _buildButton());
-    }
-    return _buildButton();
-  }
-
-  Widget _buildButton() {
     return Container(
+      width: widget.fullWidth ? matchParentWidth(context) : null,
       margin: const EdgeInsets.symmetric(vertical: 8.0),
       child: RaisedButton(
         child: Text(

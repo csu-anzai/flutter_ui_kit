@@ -26,10 +26,6 @@ class _PlainButtonState extends State<PlainButton> with ButtonMixin {
 
   @override
   Widget build(BuildContext context) {
-    return _buildButton();
-  }
-
-  Widget _buildButton() {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8.0),
       child: GestureDetector(
