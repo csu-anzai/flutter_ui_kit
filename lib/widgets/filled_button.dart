@@ -29,7 +29,6 @@ class _FilledButtonState extends State<FilledButton> with ButtonMixin {
   Widget build(BuildContext context) {
     return Container(
       width: widget.fullWidth ? matchParentWidth(context) : null,
-      margin: const EdgeInsets.symmetric(vertical: 8.0),
       child: RaisedButton(
         child: Text(
           widget.text,

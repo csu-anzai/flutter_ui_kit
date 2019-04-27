@@ -30,7 +30,6 @@ class _OutlinedButtonState extends State<OutlinedButton> with ButtonMixin {
   Widget build(BuildContext context) {
     return Container(
       width: widget.fullWidth ? matchParentWidth(context) : null,
-      margin: const EdgeInsets.symmetric(vertical: 8.0),
       child: GestureDetector(
         onTapDown: (_) {
           setState(() => _pressing = true);
