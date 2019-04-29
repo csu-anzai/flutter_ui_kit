@@ -23,8 +23,8 @@ jobs:
           name: Save new version in env variable
           command: |
             echo "export VERSION=$(git describe --tags --abbrev=0 | awk -F. '{$NF+=1; OFS="."; printf $0}')" >> $BASH_ENV
-      - run: echo $VERSION
-      - run: git tag $VERSION
+      - run: echo ${VERSION}
+      - run: git tag ${VERSION}
       - run: git push --tags
 
 workflows:
