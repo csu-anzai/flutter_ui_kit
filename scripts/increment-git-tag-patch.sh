@@ -4,7 +4,7 @@
 git fetch --tags
 
 #Get the highest tag number
-VERSION=`git describe --tags`
+VERSION=`git describe --tags $(git rev-list --tags --max-count=1)`
 VERSION=${VERSION:-'0.0.0'}
 echo $VERSION
 
