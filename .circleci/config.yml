@@ -13,7 +13,7 @@ jobs:
 
   update-version:
     docker:
-      - image: alpine/git:1.0.7
+      - image: circleci/node:10
     steps:
       - add_ssh_keys:
           fingerprints:
