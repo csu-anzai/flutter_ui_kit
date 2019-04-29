@@ -46,5 +46,18 @@ void main() {
           FilledButton(buttonText, onPressed: () {}, narrow: narrow),
       underlyingMaterialButtonType: RaisedButton,
     );
+
+    testFontSize(
+      group: group,
+      setUp: setUp,
+      testWidgets: testWidgets,
+      buttonText: buttonText,
+      buildButton: ({bool narrow, bool fullWidth}) => FilledButton(
+            buttonText,
+            onPressed: () {},
+            narrow: narrow,
+            fullWidth: fullWidth,
+          ),
+    );
   });
 }

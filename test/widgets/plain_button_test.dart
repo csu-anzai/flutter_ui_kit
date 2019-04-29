@@ -45,5 +45,17 @@ void main() {
           PlainButton(buttonText, onPressed: () {}, narrow: narrow),
       underlyingMaterialButtonType: FlatButton,
     );
+
+    testFontSize(
+      group: group,
+      setUp: setUp,
+      testWidgets: testWidgets,
+      buttonText: buttonText,
+      buildButton: ({bool narrow, bool fullWidth}) => PlainButton(
+            buttonText,
+            onPressed: () {},
+            narrow: narrow,
+          ),
+    );
   });
 }

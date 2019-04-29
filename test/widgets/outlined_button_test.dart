@@ -55,5 +55,18 @@ void main() {
           OutlinedButton(buttonText, onPressed: () {}, narrow: narrow),
       underlyingMaterialButtonType: OutlineButton,
     );
+
+    testFontSize(
+      group: group,
+      setUp: setUp,
+      testWidgets: testWidgets,
+      buttonText: buttonText,
+      buildButton: ({bool narrow, bool fullWidth}) => OutlinedButton(
+            buttonText,
+            onPressed: () {},
+            narrow: narrow,
+            fullWidth: fullWidth,
+          ),
+    );
   });
 }

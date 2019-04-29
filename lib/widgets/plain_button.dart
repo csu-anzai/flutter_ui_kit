@@ -42,7 +42,7 @@ class _PlainButtonState extends State<PlainButton> with ButtonMixin {
               pressing: _pressing,
               onPressed: widget.onPressed,
             ),
-            fontSize: ButtonStyleConstants.fontSize,
+            fontSize: getFontSize(narrow: widget.narrow),
           ),
         ),
         onPressed: isDisabled(enabled: _enabled, onPressed: widget.onPressed)

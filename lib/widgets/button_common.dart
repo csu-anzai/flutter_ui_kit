@@ -11,6 +11,7 @@ class ButtonStyleConstants {
   static const EdgeInsetsGeometry widePadding =
       const EdgeInsets.symmetric(vertical: 17.5, horizontal: 48.0);
   static const double fontSize = 16.0;
+  static const double smallFontSize = 14.0;
 }
 
 mixin ButtonMixin {
@@ -34,6 +35,12 @@ mixin ButtonMixin {
     return pressing ? AppColor.darkerGreen : AppColor.green;
   }
 
+  double getFontSize({bool narrow, bool fullWidth = false}) {
+    if (_isSmall(narrow: narrow, fullWidth: fullWidth)) {
+      return ButtonStyleConstants.smallFontSize;
+    }
+    return ButtonStyleConstants.fontSize;
+  }
 
   Future<void> disableButtonWhileOnPressedExecutes({
     EnabledSetter setEnabled,
@@ -42,5 +49,9 @@ mixin ButtonMixin {
     setEnabled(false);
     await onPressed();
     setEnabled(true);
+  }
+
+  bool _isSmall({bool narrow, bool fullWidth}) {
+    return narrow && !fullWidth;
   }
 }

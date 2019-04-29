@@ -46,7 +46,7 @@ class _OutlinedButtonState extends State<OutlinedButton> with ButtonMixin {
                 pressing: _pressing,
                 onPressed: widget.onPressed,
               ),
-              fontSize: ButtonStyleConstants.fontSize,
+              fontSize: getFontSize(narrow: widget.narrow, fullWidth: widget.fullWidth),
             ),
           ),
           onPressed: isDisabled(enabled: _enabled, onPressed: widget.onPressed)

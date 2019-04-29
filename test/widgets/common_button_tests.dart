@@ -120,11 +120,11 @@ void testFullWidthProp({
       binding.window.devicePixelRatioTestValue = 1.0;
     });
 
-    testWidgets('if true renders in full width',
-        (WidgetTester tester) async {
+    testWidgets('if true renders in full width', (WidgetTester tester) async {
       final Widget button = buildButton(fullWidth: true);
       await tester.pumpWidget(wrapInMaterialApp(button));
-      final buttonWidth = tester.element(find.byType(button.runtimeType)).size.width;
+      final buttonWidth =
+          tester.element(find.byType(button.runtimeType)).size.width;
       expect(buttonWidth, 400.0);
     });
 
@@ -132,8 +132,9 @@ void testFullWidthProp({
         (WidgetTester tester) async {
       final Widget button = buildButton(fullWidth: false);
       await tester.pumpWidget(wrapInMaterialApp(button));
-      
-      final buttonWidth = tester.element(find.byType(button.runtimeType)).size.width;
+
+      final buttonWidth =
+          tester.element(find.byType(button.runtimeType)).size.width;
       expect(buttonWidth, 224.0);
     });
   });
@@ -164,6 +165,27 @@ void testNarrowProp({
           find.byType(underlyingMaterialButtonType).evaluate().single.widget
               as MaterialButton;
       expect(button.padding, ButtonStyleConstants.widePadding);
+    });
+  });
+}
+
+void testFontSize({
+  Function group,
+  Function setUp,
+  Function testWidgets,
+  String buttonText,
+  Function buildButton,
+}) {
+  group('font size', () {
+    testWidgets(
+        'if fullWidth is false and narrow is true, the font size becomes smaller',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(wrapInMaterialApp(buildButton(
+        fullWidth: false,
+        narrow: true,
+      )));
+      expect(tester.widget<Text>(find.text(buttonText)).style.fontSize,
+          ButtonStyleConstants.smallFontSize);
     });
   });
 }

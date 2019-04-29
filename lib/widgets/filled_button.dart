@@ -34,7 +34,7 @@ class _FilledButtonState extends State<FilledButton> with ButtonMixin {
           widget.text,
           style: TextStyle(
             color: AppColor.deepWhite,
-            fontSize: ButtonStyleConstants.fontSize,
+            fontSize: getFontSize(narrow: widget.narrow, fullWidth: widget.fullWidth),
           ),
         ),
         onPressed: isDisabled(enabled: _enabled, onPressed: widget.onPressed)
