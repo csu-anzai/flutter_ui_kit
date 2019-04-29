@@ -20,7 +20,7 @@ jobs:
             - "50:63:2f:5a:ab:82:6d:59:8d:fd:57:5a:b3:2f:c3:c1"
       - checkout
       - run: git fetch
-      - run: git pull
+      - run: git pull origin master
       - run: 
           name: Save new version in env variable
           command: |
