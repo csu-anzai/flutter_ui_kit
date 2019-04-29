@@ -6,6 +6,7 @@ git fetch --tags --force
 #Get the highest tag number
 VERSION=`git describe --abbrev=0 --tags`
 VERSION=${VERSION:-'0.0.0'}
+echo $VERSION
 
 #Get number parts
 MAJOR="${VERSION%%.*}"; VERSION="${VERSION#*.}"
