@@ -19,7 +19,11 @@ jobs:
           fingerprints:
             - "50:63:2f:5a:ab:82:6d:59:8d:fd:57:5a:b3:2f:c3:c1"
       - checkout
-      - run: git tag `git describe --tags --abbrev=0 | awk -F. '{$NF+=1; OFS="."; print $0}'`
+      - run: 
+          name: Update version
+          command: |
+            echo `git describe --tags --abbrev=0 | awk -F. '{$NF+=1; OFS="."; print $0}'` >> $VERSION
+            git tag $VERSION
       - run: git push --tags
 
 workflows:
