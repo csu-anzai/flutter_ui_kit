@@ -21,10 +21,7 @@ jobs:
       - checkout
       - run:
           name: Push new git tag
-          command: |
-            git fetch --tags --force
-            sh ./scripts/increment-git-tag-patch.sh
-            git push --tags
+          command: sh ./scripts/increment-git-tag-patch.sh
 
 workflows:
   version: 2
