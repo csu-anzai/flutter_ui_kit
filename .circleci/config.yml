@@ -12,6 +12,8 @@ jobs:
       - run: flutter -v test --concurrency=2
 
   update-version:
+    docker:
+      - image: alpine/git:1.0.7
     steps:
       - checkout
       - run: VERSION=`git describe --tags --abbrev=0 | awk -F. '{$NF+=1; OFS="."; print $0}'`
