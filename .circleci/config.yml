@@ -22,7 +22,7 @@ jobs:
       - run: 
           name: Update version
           command: |
-            echo 'export VERSION=$(git describe --tags --abbrev=0 | awk -F. '{$NF+=1; OFS="."; printf $0}')' >> $BASH_ENV
+            echo `export VERSION=$(git describe --tags --abbrev=0 | awk -F. '{$NF+=1; OFS="."; printf $0}')` >> $BASH_ENV
             source $BASH_ENV
             git tag $VERSION
       - run: git push --tags
