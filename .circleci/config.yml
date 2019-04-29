@@ -19,7 +19,7 @@ jobs:
           fingerprints:
             - "50:63:2f:5a:ab:82:6d:59:8d:fd:57:5a:b3:2f:c3:c1"
       - checkout
-      - run: ./scripts/increment-git-tag-patch.sh
+      - run: sh ./scripts/increment-git-tag-patch.sh
       - run: git push --tags
 
 workflows:
