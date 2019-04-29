@@ -25,7 +25,7 @@ jobs:
 
 workflows:
   version: 2
-  changeapp-workflow:
+  flutter-ui-kit-workflow:
     jobs:
       - build
       - update-version:

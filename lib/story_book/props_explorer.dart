@@ -47,7 +47,7 @@ class _PropsExplorerState extends State<PropsExplorer> {
     return Column(
       children: <Widget>[
         widget.formBuilder(context, _props, _updateProp),
-        Divider(),
+        const Divider(),
         Container(
           padding: const EdgeInsets.symmetric(vertical: 24.0),
           child: widget.widgetBuilder(context, _props),
