@@ -11,8 +11,26 @@ jobs:
       - run: flutter analyze
       - run: flutter -v test --concurrency=2
 
+  update-version:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "50:63:2f:5a:ab:82:6d:59:8d:fd:57:5a:b3:2f:c3:c1"
+      - checkout
+      - run:
+          name: Push new git tag
+          command: sh ./scripts/increment-git-tag-patch.sh
+
 workflows:
   version: 2
-  changeapp-workflow:
+  flutter-ui-kit-workflow:
     jobs:
       - build
+      - update-version:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
