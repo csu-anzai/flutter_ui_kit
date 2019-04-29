@@ -17,7 +17,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "5f:1a:11:5b:d5:55:f1:0a:3f:d3:ff:ce:91:36:5e:5b"
+            - "50:63:2f:5a:ab:82:6d:59:8d:fd:57:5a:b3:2f:c3:c1"
       - checkout
       - run: VERSION=`git describe --tags --abbrev=0 | awk -F. '{$NF+=1; OFS="."; print $0}'`
       - run: git tag $VERSION
