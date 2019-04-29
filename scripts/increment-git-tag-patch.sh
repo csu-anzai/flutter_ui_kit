@@ -22,7 +22,7 @@ echo "Updating to $NEW_TAG"
 
 #Only tag if no tag already (would be better if the git describe command above could have a silent option)
 if [ -z "$NEEDS_TAG" ]; then
-    echo "Tagged with $NEW_TAG (Ignoring fatal:cannot describe - this means commit is untagged) "
+    echo "Tagged with $NEW_TAG"
     git tag $NEW_TAG
 else
     echo "Already a tag on this commit"

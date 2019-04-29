@@ -13,21 +13,13 @@ jobs:
 
   update-version:
     docker:
-      - image: circleci/node:10
+      - image: alpine/git:1.0.7
     steps:
       - add_ssh_keys:
           fingerprints:
             - "50:63:2f:5a:ab:82:6d:59:8d:fd:57:5a:b3:2f:c3:c1"
       - checkout
-      - run: git fetch
-      - run: git pull origin master
-      - run: 
-          name: Save new version in env variable
-          command: |
-            echo "export VERSION=$(git describe --tags --abbrev=0 | awk -F. '{$NF+=1; OFS="."; printf $0}')" >> $BASH_ENV
-      - run: git describe --tags --abbrev=0 | awk -F. '{$NF+=1; OFS="."; printf $0}'
-      - run: echo ${VERSION}
-      - run: git tag ${VERSION}
+      - run: ./scripts/increment-git-tag-patch.sh
       - run: git push --tags
 
 workflows:
