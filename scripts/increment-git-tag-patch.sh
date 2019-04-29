@@ -1,10 +1,10 @@
 #!/bin/sh
 
 #Update local tags
-git fetch --tags --force
+git fetch --tags
 
 #Get the highest tag number
-VERSION=`git describe --abbrev=0 --tags`
+VERSION=`git describe --tags`
 VERSION=${VERSION:-'0.0.0'}
 echo $VERSION
 
@@ -22,13 +22,8 @@ NEEDS_TAG=`git describe --contains $GIT_COMMIT`
 
 #Create new tag
 NEW_TAG="$MAJOR.$MINOR.$PATCH"
-echo "Updating to $NEW_TAG"
 
-#Only tag if no tag already (would be better if the git describe command above could have a silent option)
-if [ -z "$NEEDS_TAG" ]; then
-    echo "Tagged with $NEW_TAG"
-    git tag $NEW_TAG
-    git push --tags
-else
-    echo "Already a tag on this commit"
-fi
+echo "Updating to $NEW_TAG"
+git tag $NEW_TAG
+echo "Pushing new tag $NEW_TAG"
+git push --tags
