@@ -15,6 +15,9 @@ jobs:
     docker:
       - image: alpine/git:1.0.7
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "5f:1a:11:5b:d5:55:f1:0a:3f:d3:ff:ce:91:36:5e:5b"
       - checkout
       - run: VERSION=`git describe --tags --abbrev=0 | awk -F. '{$NF+=1; OFS="."; print $0}'`
       - run: git tag $VERSION
