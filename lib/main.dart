@@ -1,4 +1,5 @@
 import 'package:flutter_ui_kit/stories/buttons.dart';
+import 'package:flutter_ui_kit/stories/cards.dart';
 import 'package:flutter_ui_kit/stories/colors.dart';
 import 'package:flutter_ui_kit/story_book/story_book.dart';
 import 'package:flutter_ui_kit/theme.dart';
@@ -13,6 +14,7 @@ void main() {
         pages: [
           AppColors(),
           Buttons(),
+          AppCards(),
         ],
       ),
     ),
