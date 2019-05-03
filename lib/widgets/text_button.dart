@@ -6,10 +6,12 @@ import 'button_common.dart';
 class TextButton extends StatefulWidget {
   final String text;
   final FutureCallback onPressed;
+  final EdgeInsetsGeometry padding;
 
   TextButton(
     this.text, {
     @required this.onPressed,
+    this.padding,
     Key key,
   })  : assert(text != null),
         super(key: key);
@@ -34,21 +36,22 @@ class _TextButtonState extends State<TextButton> with ButtonMixin {
       child: FlatButton(
         child: Text(
           widget.text,
-          style: TextStyle(
-            color: getTextColorOnWhiteBackground(
-              enabled: _enabled,
-              pressing: _pressing,
-              onPressed: widget.onPressed,
-            ),
-            fontSize: 12.0,
-          ),
+          style: Theme.of(context).textTheme.body1.copyWith(
+                color: getTextColorOnWhiteBackground(
+                  enabled: _enabled,
+                  pressing: _pressing,
+                  onPressed: widget.onPressed,
+                ),
+                fontSize: 12.0,
+              ),
         ),
         onPressed: isDisabled(enabled: _enabled, onPressed: widget.onPressed)
             ? null
             : () => disableButtonWhileOnPressedExecutes(
                 setEnabled: _setEnabled, onPressed: widget.onPressed),
         textColor: AppColor.green,
-        padding: const EdgeInsets.symmetric(vertical: 17.5, horizontal: 18.5),
+        padding: widget.padding ??
+            const EdgeInsets.symmetric(vertical: 17.5, horizontal: 18.5),
       ),
     );
   }

@@ -8,12 +8,14 @@ class OutlinedButton extends StatefulWidget {
   final FutureCallback onPressed;
   final bool fullWidth;
   final bool narrow;
+  final EdgeInsetsGeometry padding;
 
   OutlinedButton(
     this.text, {
     @required this.onPressed,
     this.fullWidth = false,
     this.narrow = false,
+    this.padding,
     Key key,
   })  : assert(text != null),
         super(key: key);
@@ -40,20 +42,21 @@ class _OutlinedButtonState extends State<OutlinedButton> with ButtonMixin {
         child: OutlineButton(
           child: Text(
             widget.text,
-            style: TextStyle(
-              color: getTextColorOnWhiteBackground(
-                enabled: _enabled,
-                pressing: _pressing,
-                onPressed: widget.onPressed,
-              ),
-              fontSize: getFontSize(narrow: widget.narrow, fullWidth: widget.fullWidth),
-            ),
+            style: Theme.of(context).textTheme.body1.copyWith(
+                  color: getTextColorOnWhiteBackground(
+                    enabled: _enabled,
+                    pressing: _pressing,
+                    onPressed: widget.onPressed,
+                  ),
+                  fontSize: getFontSize(
+                      narrow: widget.narrow, fullWidth: widget.fullWidth),
+                ),
           ),
           onPressed: isDisabled(enabled: _enabled, onPressed: widget.onPressed)
               ? null
               : () => disableButtonWhileOnPressedExecutes(
                   setEnabled: _setEnabled, onPressed: widget.onPressed),
-          padding: getPadding(narrow: widget.narrow),
+          padding: widget.padding ?? getPadding(narrow: widget.narrow),
           textColor: AppColor.green,
           borderSide: BorderSide(color: AppColor.green),
           highlightedBorderColor: AppColor.green,
