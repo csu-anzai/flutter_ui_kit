@@ -8,7 +8,7 @@ import '../wrap_in_material_app.dart';
 
 void main() {
   group('AppCard', () {
-    const underlyingMaterialWidget = Card;
+    const underlyingWidget = Container;
 
     testWidgets('renders child widget', (WidgetTester tester) async {
       await tester.pumpWidget(wrapInMaterialApp(
@@ -30,13 +30,20 @@ void main() {
         )
       );
 
-      final widget = tester.widget(find.byType(underlyingMaterialWidget));
-      final Card cardWidget = widget;
-      expect(cardWidget.color, AppColor.deepWhite);
-      expect(cardWidget.elevation, 2.0);
-      expect(cardWidget.margin, EdgeInsets.zero);
-      expect(cardWidget.child, child);
-      expect(cardWidget.shape, RoundedRectangleBorder(borderRadius: const BorderRadius.all(const Radius.circular(4.0))));
+      final widget = tester.widget(find.byType(underlyingWidget));
+      final Container containerWidget = widget;
+      expect(containerWidget.margin, EdgeInsets.zero);
+      expect(containerWidget.child, child);
+
+      final BoxDecoration decoration = containerWidget.decoration;
+      expect(decoration.color, AppColor.deepWhite);
+      expect(decoration.borderRadius, const BorderRadius.all(Radius.circular(4)));
+      expect(decoration.boxShadow, [const BoxShadow(
+          color: AppColor.shadowColor,
+          offset: const Offset(0.0, 3.0),
+          blurRadius: 5.0,
+          spreadRadius: 0.0
+      )]);
     });
 
     testWidgets('passes correct properteies', (WidgetTester tester) async {
@@ -44,20 +51,27 @@ void main() {
       await tester.pumpWidget(wrapInMaterialApp(
           const AppCard(
               child: child,
-              elevation: 4.0,
-              margin: EdgeInsets.all(20.0),
+              elevation: 3,
+              margin: EdgeInsets.all(11.0),
               borderRadius: 1,
           )
       )
       );
 
-      final widget = tester.widget(find.byType(underlyingMaterialWidget));
-      final Card cardWidget = widget;
-      expect(cardWidget.color, AppColor.deepWhite);
-      expect(cardWidget.elevation, 4.0);
-      expect(cardWidget.margin, const EdgeInsets.all(20.0));
-      expect(cardWidget.child, child);
-      expect(cardWidget.shape, RoundedRectangleBorder(borderRadius: const BorderRadius.all(const Radius.circular(1.0))));
+      final widget = tester.widget(find.byType(underlyingWidget));
+      final Container containerWidget = widget;
+      expect(containerWidget.margin, const EdgeInsets.all(11.0));
+      expect(containerWidget.child, child);
+
+      final BoxDecoration decoration = containerWidget.decoration;
+      expect(decoration.color, AppColor.deepWhite);
+      expect(decoration.borderRadius, const BorderRadius.all(Radius.circular(1)));
+      expect(decoration.boxShadow, [const BoxShadow(
+          color: AppColor.shadowColor,
+          offset: const Offset(0.0, 5.0),
+          blurRadius: 15.0,
+          spreadRadius: 0.0
+      )]);
     });
   });
 }
