@@ -4,9 +4,7 @@ import 'label_text.dart';
 
 class LabelValuePair extends StatelessWidget {
   final String labelText;
-  final TextStyle labelStyle;
   final String valueText;
-  final TextStyle valueStyle;
   final Widget value;
   final ValueLabelTextAlign textAlign;
   final bool copyToClipboardEnabled;
@@ -14,8 +12,6 @@ class LabelValuePair extends StatelessWidget {
 
   const LabelValuePair({
     @required this.labelText,
-    this.labelStyle,
-    this.valueStyle,
     this.valueText,
     this.copyToClipboardEnabled = false,
     this.textAlign,
