@@ -25,7 +25,7 @@ class AppCards extends StatelessWidget {
       title: 'Empty Card',
       child: PropsExplorer(
         initialProps: const <String, dynamic>{
-          'elevation': 5.0,
+          'elevation': 2.0,
           'margin': 15.0,
           'borderRadius': 4.0,
         },
@@ -38,8 +38,8 @@ class AppCards extends StatelessWidget {
                   props: props,
                   updateProp: updateProp,
                   propKey: 'elevation',
-                  min: 0,
-                  max: 20
+                  min: 1,
+                  max: 4
               ),
               DoublePropUpdater(
                   props: props,
@@ -65,7 +65,7 @@ class AppCards extends StatelessWidget {
 
           return AppCard(
             color: AppColor.deepWhite,
-            elevation: elevation,
+            elevation: elevation.toInt(),
             margin: EdgeInsets.all(margin),
             borderRadius: borderRadius,
             child: Container(
@@ -84,7 +84,7 @@ class AppCards extends StatelessWidget {
       title: 'Sample Card',
       child: PropsExplorer(
       initialProps: const <String, dynamic>{
-        'elevation': 5.0,
+        'elevation': 2.0,
         'margin': 15.0,
         'borderRadius': 4.0,
       },
@@ -97,8 +97,8 @@ class AppCards extends StatelessWidget {
               props: props,
               updateProp: updateProp,
               propKey: 'elevation',
-              min: 0,
-              max: 20
+              min: 1,
+              max: 4
             ),
             DoublePropUpdater(
               props: props,
@@ -124,7 +124,7 @@ class AppCards extends StatelessWidget {
 
         return AppCard(
           color: AppColor.deepWhite,
-          elevation: elevation,
+          elevation: elevation.toInt(),
           margin: EdgeInsets.all(margin),
           borderRadius: borderRadius,
           child: Column(
