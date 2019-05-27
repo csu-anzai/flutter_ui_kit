@@ -44,14 +44,17 @@ class AppCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      child: child,
-      margin: margin,
-      decoration: new BoxDecoration(
-          color: AppColor.deepWhite,
-          border: null,
-          borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
-          boxShadow: [_elevationToShadow[elevation]]
+    final boxShadow = _elevationToShadow[elevation];
+    return Material(
+      child: Container(
+        child: child,
+        margin: margin,
+        decoration: new BoxDecoration(
+            color: AppColor.deepWhite,
+            border: null,
+            borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
+            boxShadow: boxShadow==null ? null : [boxShadow]
+        ),
       ),
     );
   }
