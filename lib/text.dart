@@ -52,7 +52,7 @@ class AppText {
       fontWeight: FontWeight.normal,
       letterSpacing: 0,
       color: AppColor.deepBlack);
-
+  
   static const TextStyle body3 = TextStyle(
       fontSize: 12.0,
       fontFamily: 'Circular',
