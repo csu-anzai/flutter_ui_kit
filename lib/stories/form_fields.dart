@@ -69,13 +69,13 @@ class FormFields extends StatelessWidget {
 
   Future<void> _showSnackBar(String pin, BuildContext context) async {
     final snackBar = SnackBar(
-      duration: Duration(seconds: 5),
+      duration: const Duration(seconds: 5),
       content: Container(
           height: 80.0,
           child: Center(
             child: Text(
               'Pin Submitted. Value: $pin',
-              style: TextStyle(fontSize: 25.0),
+              style: const TextStyle(fontSize: 25.0),
             ),
           )),
       backgroundColor: Colors.greenAccent,

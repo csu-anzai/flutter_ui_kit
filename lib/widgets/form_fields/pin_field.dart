@@ -22,7 +22,6 @@ class PinField extends StatefulWidget {
 
 class _PinFieldState extends State<PinField> {
   static const double _inputFieldWidth = 40.0;
-  static const double _inputFieldHeight = 40.0;
   static const double _inputPadding = 5.0;
 
   List<FocusNode> _focusNodes;
