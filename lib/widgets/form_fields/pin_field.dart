@@ -159,13 +159,7 @@ class _PinFieldState extends State<PinField> {
   }
 
   bool _allFieldsAreFilled() {
-    var result = true;
-    _values.forEach((String v) {
-      if (v.isEmpty) {
-        result = false;
-      }
-    });
-    return result;
+    return _values.every((String v) => v.isNotEmpty);
   }
 
   void _focusOnFirstNonEmptyTextField(BuildContext context) {

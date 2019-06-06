@@ -10,6 +10,12 @@ class OnSubmitMock extends Mock implements Function {
   Future<void> call(String value);
 }
 
+List<TextField> _findTextFields(WidgetTester tester) =>
+    tester.widgetList<TextField>(find.byType(TextField)).toList();
+
+TextField _findTextFieldAtIndex(WidgetTester tester, int index) =>
+    _findTextFields(tester)[index];
+
 void main() {
   group('Pin Field', () {
     testWidgets('renders correct number of inputs',
@@ -41,7 +47,7 @@ void main() {
           errorMessage: errorMessage,
         )));
 
-        final textFields = tester.widgetList<TextField>(find.byType(TextField));
+        final textFields = _findTextFields(tester);
         expect(textFields.length, 3);
         textFields.forEach((TextField tf) {
           expect(
@@ -66,10 +72,10 @@ void main() {
           onSubmit: onSubmit,
         )));
 
-        final textFields =
-            tester.widgetList<TextField>(find.byType(TextField)).toList();
         for (var i = 0; i < fieldsCount; i++) {
-          await tester.enterText(find.byWidget(textFields[i]), '1');
+          final currentTextField = _findTextFieldAtIndex(tester, i);
+          await tester.enterText(find.byWidget(currentTextField), '1');
+          await tester.pump();
         }
         verify(onSubmit('1111'));
       });
@@ -83,13 +89,12 @@ void main() {
           onSubmit: onSubmit,
         )));
 
-        final textFields =
-            tester.widgetList<TextField>(find.byType(TextField)).toList();
         for (var i = 0; i < fieldsCount; i++) {
-          await tester.enterText(find.byWidget(textFields[i]), '1');
+          final currentTextField = _findTextFieldAtIndex(tester, i);
+          await tester.enterText(find.byWidget(currentTextField), '1');
+          await tester.pump();
         }
         verify(onSubmit('1111'));
-        await tester.pump();
         expect(find.text('1'), findsNothing);
       });
     });
@@ -103,8 +108,7 @@ void main() {
           autofocus: true,
         )));
 
-        final textFields =
-            tester.widgetList<TextField>(find.byType(TextField)).toList();
+        final textFields = _findTextFields(tester);
         expect(textFields.first.focusNode.hasFocus, true);
         expect(textFields.last.focusNode.hasFocus, false);
       });
@@ -117,12 +121,12 @@ void main() {
           fieldsCount: fieldsCount,
         )));
 
-        final textFields =
-            tester.widgetList<TextField>(find.byType(TextField)).toList();
+        final firstTextField = _findTextFieldAtIndex(tester, 0);
         for (var i = 1; i < fieldsCount; i++) {
-          await tester.tap(find.byWidget(textFields[i]));
-          expect(textFields.first.focusNode.hasFocus, true);
-          expect(textFields[i].focusNode.hasFocus, false);
+          final currentTextField = _findTextFieldAtIndex(tester, i);
+          await tester.tap(find.byWidget(currentTextField));
+          expect(firstTextField.focusNode.hasFocus, true);
+          expect(currentTextField.focusNode.hasFocus, false);
         }
       });
 
@@ -134,14 +138,15 @@ void main() {
           fieldsCount: fieldsCount,
         )));
 
-        final textFields =
-            tester.widgetList<TextField>(find.byType(TextField)).toList();
-        await tester.enterText(find.byWidget(textFields.first), '1');
-        final secondTextField = textFields[1];
+        final firstTextField = _findTextFieldAtIndex(tester, 0);
+        await tester.enterText(find.byWidget(firstTextField), '1');
+        await tester.pump();
+        final secondTextField = _findTextFieldAtIndex(tester, 1);
         for (var i = 2; i < fieldsCount; i++) {
-          await tester.tap(find.byWidget(textFields[i]));
+          final currentTextField = _findTextFieldAtIndex(tester, i);
+          await tester.tap(find.byWidget(currentTextField));
           expect(secondTextField.focusNode.hasFocus, true);
-          expect(textFields[i].focusNode.hasFocus, false);
+          expect(currentTextField.focusNode.hasFocus, false);
         }
       });
 
@@ -152,12 +157,13 @@ void main() {
           fieldsCount: fieldsCount,
         )));
 
-        final textFields =
-            tester.widgetList<TextField>(find.byType(TextField)).toList();
+        final textFields = _findTextFields(tester);
+        expect(textFields.length, 4);
         for (var i = 0; i < fieldsCount - 1; i++) {
-          final currentTextField = textFields[i];
+          final currentTextField = _findTextFieldAtIndex(tester, i);
           await tester.enterText(find.byWidget(currentTextField), '1');
-          final nextTextField = textFields[i + 1];
+          await tester.pump();
+          final nextTextField = _findTextFieldAtIndex(tester, i + 1);
           expect(nextTextField.focusNode.hasFocus, true);
         }
       });
@@ -170,13 +176,14 @@ void main() {
           fieldsCount: fieldsCount,
         )));
 
-        final textFields =
-            tester.widgetList<TextField>(find.byType(TextField)).toList();
         for (var i = 0; i < fieldsCount - 1; i++) {
-          await tester.enterText(find.byWidget(textFields[i]), '1');
+          final currentTextField = _findTextFieldAtIndex(tester, i);
+          await tester.enterText(find.byWidget(currentTextField), '1');
+          await tester.pump();
         }
-        await tester.enterText(find.byWidget(textFields.last), '1');
-        expect(textFields.last.focusNode.hasFocus, false);
+        final lastTextField = _findTextFieldAtIndex(tester, fieldsCount - 1);
+        await tester.enterText(find.byWidget(lastTextField), '1');
+        expect(lastTextField.focusNode.hasFocus, false);
       });
     });
 
@@ -187,7 +194,7 @@ void main() {
           fieldsCount: 3,
         )));
 
-        final textFields = tester.widgetList<TextField>(find.byType(TextField));
+        final textFields = _findTextFields(tester);
         expect(textFields.length, 3);
         textFields.forEach((TextField tf) {
           expect(
@@ -213,7 +220,7 @@ void main() {
         );
         await tester.pump();
 
-        final textFields = tester.widgetList<TextField>(find.byType(TextField));
+        final textFields = _findTextFields(tester);
         expect(textFields.length, 2);
         expect(
           textFields.first.decoration.enabledBorder.borderSide.color,
