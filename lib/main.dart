@@ -1,6 +1,7 @@
 import 'package:flutter_ui_kit/stories/buttons.dart';
 import 'package:flutter_ui_kit/stories/cards.dart';
 import 'package:flutter_ui_kit/stories/colors.dart';
+import 'package:flutter_ui_kit/stories/form_fields.dart';
 import 'package:flutter_ui_kit/stories/layouts.dart';
 import 'package:flutter_ui_kit/stories/numpads.dart';
 import 'package:flutter_ui_kit/stories/popover.dart';
@@ -24,7 +25,8 @@ void main() {
           AppCards(),
           Popover(),
           Layouts(),
-          Iconography()
+          Iconography(),
+          FormFields(),
         ],
       ),
     ),
