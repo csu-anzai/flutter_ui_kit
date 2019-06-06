@@ -49,6 +49,6 @@ class _ChangeIconState extends State<ChangeIcon> {
     if (_svgContents == null)
       return Container();
 
-    return SvgPicture.string(_svgContents);
+    return SvgPicture.string(_svgContents, width: 32.0, height: 32.0);
   }
 }
