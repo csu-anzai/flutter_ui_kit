@@ -7,13 +7,13 @@ class PinField extends StatefulWidget {
   final int fieldsCount;
   final OnSubmit onSubmit;
   final String errorMessage;
-  final bool autofocus;
+  final bool autoFocus;
 
   PinField({
     @required this.fieldsCount,
     this.onSubmit,
     this.errorMessage = '',
-    this.autofocus = false,
+    this.autoFocus = false,
   }) : assert(fieldsCount > 0);
 
   @override
@@ -111,7 +111,7 @@ class _PinFieldState extends State<PinField> {
             controller: _controllers[index],
             focusNode: _focusNodes[index],
             onChanged: (_) => _handleChange(context),
-            autofocus: widget.autofocus && index == 0,
+            autofocus: widget.autoFocus && index == 0,
           ),
         ),
       ),

@@ -58,7 +58,7 @@ class FormFields extends StatelessWidget {
             child: PinField(
               fieldsCount: props['fieldsCount'],
               errorMessage: props['errorMessage'],
-              autofocus: props['autofocus'],
+              autoFocus: props['autofocus'],
               onSubmit: (String pin) => _showSnackBar(pin, context),
             ),
           );

@@ -105,7 +105,7 @@ void main() {
         const fieldsCount = 4;
         await tester.pumpWidget(wrapInMaterialApp(PinField(
           fieldsCount: fieldsCount,
-          autofocus: true,
+          autoFocus: true,
         )));
 
         final textFields = _findTextFields(tester);
