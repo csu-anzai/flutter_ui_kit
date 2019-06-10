@@ -45,7 +45,10 @@ class _ChangeIconState extends State<ChangeIcon> {
 
   @override
   Widget build(BuildContext context) {
-    if (_svgContents == null) return Container();
-    return SvgPicture.string(_svgContents, width: widget.width, height: widget.height);
+    if (_svgContents == null) {
+      return Container();
+    }
+    return SvgPicture.string(_svgContents,
+        width: widget.width, height: widget.height);
   }
 }
