@@ -55,6 +55,20 @@ class ChangeAppIcons {
       )
   );
 
+  static const ChangeIcon reward_enabled = ChangeIcon(
+      const ChangeIconData(
+          'reward',
+          ChangeIconType.enabled
+      )
+  );
+
+  static const ChangeIcon reward_disabled = ChangeIcon(
+      const ChangeIconData(
+          'reward',
+          ChangeIconType.disabled
+      )
+  );
+
   static const ChangeIcon convert_disabled = ChangeIcon(
       const ChangeIconData(
           'convert',

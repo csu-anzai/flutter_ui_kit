@@ -25,6 +25,7 @@ class Iconography extends StatelessWidget {
         crossAxisCount: 3,
         shrinkWrap: true,
         children: <Widget>[
+          _receivedRewardEnabled(),
           _atmWithdrawEnabled(),
           _roundupEnabled(),
           _bitcoinToSavingsEnabled(),
@@ -57,6 +58,7 @@ class Iconography extends StatelessWidget {
         crossAxisCount: 3,
         shrinkWrap: true,
         children: <Widget>[
+          _receivedRewardDisabled(),
           _atmWithdrawDisabled(),
           _roundupDisabled(),
           _bitcoinToSavingsDisabled(),
@@ -100,13 +102,35 @@ class Iconography extends StatelessWidget {
   }
 
 
-
   Widget _atmWithdrawEnabled() {
     return Card(
       child: Column(
         children: <Widget>[
           Center(child: ChangeAppIcons.atm_withdraw),
           const Text('ATM Withdraw')
+        ],
+      )
+    );
+  }
+
+
+  Widget _receivedRewardEnabled() {
+    return Card(
+      child: Column(
+        children: <Widget>[
+          Center(child: ChangeAppIcons.reward_enabled),
+          const Text('Received reward')
+        ],
+      )
+    );
+  }
+
+  Widget _receivedRewardDisabled() {
+    return Card(
+      child: Column(
+        children: <Widget>[
+          Center(child: ChangeAppIcons.reward_disabled),
+          const Text('Received reward')
         ],
       )
     );

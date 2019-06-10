@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:package_info/package_info.dart';
-import 'package:flutter/services.dart' show rootBundle;
 
 import 'change_icon_data.dart';
 
-
 class ChangeIcon extends StatefulWidget {
-
   final ChangeIconData iconData;
+  final double width;
+  final double height;
 
-  const ChangeIcon(this.iconData);
+  const ChangeIcon(this.iconData, {this.width, this.height});
 
   @override
   State<StatefulWidget> createState() {
@@ -19,7 +19,6 @@ class ChangeIcon extends StatefulWidget {
 }
 
 class _ChangeIconState extends State<ChangeIcon> {
-
   String _svgContents;
 
   @override
@@ -29,12 +28,12 @@ class _ChangeIconState extends State<ChangeIcon> {
     PackageInfo.fromPlatform().then((packageInfo) {
       print(packageInfo.packageName);
       var iconPath = '';
-      if (
-          packageInfo.packageName == 'com.example.changeUiKit' || packageInfo.packageName == 'com.getchange.flutter_ui_kit'
-      )
+      if (packageInfo.packageName == 'com.example.changeUiKit' ||
+          packageInfo.packageName == 'com.getchange.flutter_ui_kit')
         iconPath = 'lib/assets/icons/${widget.iconData.getIconPath()}';
       else
-        iconPath = 'packages/flutter_ui_kit/assets/icons/${widget.iconData.getIconPath()}';
+        iconPath =
+            'packages/flutter_ui_kit/assets/icons/${widget.iconData.getIconPath()}';
 
       rootBundle.loadString(iconPath).then((svgValue) {
         setState(() {
@@ -46,9 +45,10 @@ class _ChangeIconState extends State<ChangeIcon> {
 
   @override
   Widget build(BuildContext context) {
-    if (_svgContents == null)
+    if (_svgContents == null) {
       return Container();
-
-    return SvgPicture.string(_svgContents);
+    }
+    return SvgPicture.string(_svgContents,
+        width: widget.width, height: widget.height);
   }
 }

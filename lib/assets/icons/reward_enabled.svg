@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37.83 33.83">
+  <title>Asset 1</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g>
+        <path d="M35.08,16.92A16.17,16.17,0,0,1,4.23,23.68" style="fill: none;stroke: #000;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+        <path d="M2.75,16.92a16.17,16.17,0,0,1,30.86-6.75" style="fill: none;stroke: #000;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+        <circle cx="18.92" cy="16.92" r="10.5" style="fill: #3edbb5;stroke: #000;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+        <g>
+          <path d="M16.81,16.78h3a2,2,0,0,0,2-2h0a2,2,0,0,0-2-2h-3v8h3a2,2,0,0,0,2-2h0a2,2,0,0,0-2-2h-3" style="fill: none;stroke: #000;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+          <line x1="16.81" y1="11.78" x2="16.81" y2="21.78" style="fill: none;stroke: #000;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+          <line x1="18.83" y1="11.78" x2="18.83" y2="12.78" style="fill: none;stroke: #000;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+          <line x1="18.83" y1="20.78" x2="18.83" y2="21.78" style="fill: none;stroke: #000;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+          <line x1="16.88" y1="12.78" x2="15.87" y2="12.78" style="fill: none;stroke: #000;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+          <line x1="16.88" y1="20.78" x2="15.87" y2="20.78" style="fill: none;stroke: #000;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+        </g>
+      </g>
+      <polyline points="0.75 15.92 2.75 17.92 4.75 15.92" style="fill: none;stroke: #000;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+      <polyline points="37.08 17.78 35.08 15.78 33.08 17.78" style="fill: none;stroke: #000;stroke-linecap: round;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+    </g>
+  </g>
+</svg>
