@@ -161,10 +161,19 @@ class ChangeAppIcons {
   );
 
   static const ChangeIcon wallet = ChangeIcon(
-      const ChangeIconData(
+      const ChangeIconData (
           'wallet',
           ChangeIconType.enabled
       )
+  );
+
+  static ChangeIcon walletSized(double width, double height) => ChangeIcon(
+      const ChangeIconData (
+          'wallet',
+          ChangeIconType.enabled,
+      ),
+      width : width,
+      height : height
   );
 
   static const ChangeIcon wallet_disabled = ChangeIcon(
@@ -174,11 +183,29 @@ class ChangeAppIcons {
       )
   );
 
+  static ChangeIcon walletDisabledSized(double width, double height) => ChangeIcon(
+      const ChangeIconData (
+          'wallet',
+          ChangeIconType.disabled,
+      ),
+      width : width,
+      height : height
+  );
+
   static const ChangeIcon prices = ChangeIcon(
       const ChangeIconData(
           'prices',
           ChangeIconType.enabled
       )
+  );
+
+  static ChangeIcon pricesSized(double width, double height) => ChangeIcon(
+      const ChangeIconData (
+        'prices',
+        ChangeIconType.enabled,
+      ),
+      width : width,
+      height : height
   );
 
   static const ChangeIcon prices_disabled = ChangeIcon(
@@ -188,11 +215,29 @@ class ChangeAppIcons {
       )
   );
 
+  static ChangeIcon pricesDisabledSized(double width, double height) => ChangeIcon(
+      const ChangeIconData (
+        'prices',
+        ChangeIconType.disabled,
+      ),
+      width : width,
+      height : height
+  );
+
   static const ChangeIcon card = ChangeIcon(
       const ChangeIconData(
           'card',
           ChangeIconType.enabled
       )
+  );
+
+  static ChangeIcon cardSized(double width, double height) => ChangeIcon(
+      const ChangeIconData (
+        'card',
+        ChangeIconType.enabled,
+      ),
+      width : width,
+      height : height
   );
 
   static const ChangeIcon card_disabled = ChangeIcon(
@@ -202,6 +247,15 @@ class ChangeAppIcons {
       )
   );
 
+  static ChangeIcon cardDisabledSized(double width, double height) => ChangeIcon(
+      const ChangeIconData (
+        'card',
+        ChangeIconType.disabled,
+      ),
+      width : width,
+      height : height
+  );
+
   static const ChangeIcon nav_settings = ChangeIcon(
       const ChangeIconData(
           'nav_settings',
@@ -209,11 +263,29 @@ class ChangeAppIcons {
       )
   );
 
+  static ChangeIcon navSized(double width, double height) => ChangeIcon(
+      const ChangeIconData (
+        'nav_settings',
+        ChangeIconType.enabled,
+      ),
+      width : width,
+      height : height
+  );
+
   static const ChangeIcon nav_settings_disabled = ChangeIcon(
       const ChangeIconData(
           'nav_settings',
           ChangeIconType.disabled
       )
+  );
+
+  static ChangeIcon navDisabledSized(double width, double height) => ChangeIcon(
+      const ChangeIconData (
+        'nav_settings',
+        ChangeIconType.disabled,
+      ),
+      width : width,
+      height : height
   );
 
   static const ChangeIcon arrow_forward = ChangeIcon(
@@ -237,10 +309,28 @@ class ChangeAppIcons {
       )
   );
 
+  static ChangeIcon inviteSized(double width, double height) => ChangeIcon(
+      const ChangeIconData (
+        'invite',
+        ChangeIconType.enabled,
+      ),
+      width : width,
+      height : height
+  );
+
   static const ChangeIcon invite_disabled = ChangeIcon(
       const ChangeIconData(
           'invite',
           ChangeIconType.disabled
       )
+  );
+
+  static ChangeIcon inviteDisabledSized(double width, double height) => ChangeIcon(
+      const ChangeIconData (
+        'invite',
+        ChangeIconType.disabled,
+      ),
+      width : width,
+      height : height
   );
 }
