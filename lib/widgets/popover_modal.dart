@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_kit/color.dart';
 
+import 'high_popover_modal.dart';
+
 class PopoverModal {
   Future<T> showPopover<T>(
     BuildContext context,
     Widget child,
   ) {
-    return showModalBottomSheet<T>(
+    return showModalBottomSheetCustom<T>(
         context: context,
         builder: (BuildContext context) {
           return new Container(
