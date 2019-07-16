@@ -48,7 +48,7 @@ class BottomSheet extends StatefulWidget {
     this.animationController,
     this.enableDrag = true,
     this.elevation = 0.0,
-  })  : assert(enableDrag != null),
+  }) : assert(enableDrag != null),
         assert(onClosing != null),
         assert(builder != null),
         assert(elevation != null && elevation >= 0.0),
@@ -100,6 +100,7 @@ class BottomSheet extends StatefulWidget {
 }
 
 class _BottomSheetState extends State<BottomSheet> {
+
   final GlobalKey _childKey = GlobalKey(debugLabel: 'BottomSheet child');
 
   double get _childHeight {
@@ -107,14 +108,12 @@ class _BottomSheetState extends State<BottomSheet> {
     return renderBox.size.height;
   }
 
-  bool get _dismissUnderway =>
-      widget.animationController.status == AnimationStatus.reverse;
+  bool get _dismissUnderway => widget.animationController.status == AnimationStatus.reverse;
 
   void _handleDragUpdate(DragUpdateDetails details) {
     if (_dismissUnderway)
       return;
-    widget.animationController.value -=
-        details.primaryDelta / (_childHeight ?? details.primaryDelta);
+    widget.animationController.value -= details.primaryDelta / (_childHeight ?? details.primaryDelta);
   }
 
   void _handleDragEnd(DragEndDetails details) {
@@ -142,21 +141,21 @@ class _BottomSheetState extends State<BottomSheet> {
       elevation: widget.elevation,
       child: widget.builder(context),
     );
-    return !widget.enableDrag
-        ? bottomSheet
-        : GestureDetector(
-            onVerticalDragUpdate: _handleDragUpdate,
-            onVerticalDragEnd: _handleDragEnd,
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(10), child: bottomSheet),
-            excludeFromSemantics: true,
-          );
+    return !widget.enableDrag ? bottomSheet : GestureDetector(
+      onVerticalDragUpdate: _handleDragUpdate,
+      onVerticalDragEnd: _handleDragEnd,
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: bottomSheet),
+      excludeFromSemantics: true,
+    );
   }
 }
 
 // PERSISTENT BOTTOM SHEETS
 
 // See scaffold.dart
+
 
 // MODAL BOTTOM SHEETS
 
@@ -187,7 +186,7 @@ class _ModalBottomSheetLayout extends SingleChildLayoutDelegate {
 }
 
 class _ModalBottomSheet<T> extends StatefulWidget {
-  const _ModalBottomSheet({Key key, this.route}) : super(key: key);
+  const _ModalBottomSheet({ Key key, this.route }) : super(key: key);
 
   final _ModalBottomSheetRoute<T> route;
 
@@ -219,9 +218,7 @@ class _ModalBottomSheetState<T> extends State<_ModalBottomSheet<T>> {
         builder: (BuildContext context, Widget child) {
           // Disable the initial animation when accessible navigation is on so
           // that the semantics are added to the tree at the correct time.
-          final animationValue = mediaQuery.accessibleNavigation
-              ? 1.0
-              : widget.route.animation.value;
+          final animationValue = mediaQuery.accessibleNavigation ? 1.0 : widget.route.animation.value;
           return Semantics(
             scopesRoute: true,
             namesRoute: true,
@@ -272,14 +269,12 @@ class _ModalBottomSheetRoute<T> extends PopupRoute<T> {
   @override
   AnimationController createAnimationController() {
     assert(_animationController == null);
-    _animationController =
-        BottomSheet.createAnimationController(navigator.overlay);
+    _animationController = BottomSheet.createAnimationController(navigator.overlay);
     return BottomSheet.createAnimationController(navigator.overlay);
   }
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation) {
+  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
     // By definition, the bottom sheet is aligned to the bottom of the page
     // and isn't exposed to the top padding of the MediaQuery.
     Widget bottomSheet = MediaQuery.removePadding(
@@ -289,7 +284,7 @@ class _ModalBottomSheetRoute<T> extends PopupRoute<T> {
     );
     if (theme != null)
       bottomSheet = Theme(data: theme, child: bottomSheet);
-    return Theme(data: theme, child: bottomSheet);
+    return bottomSheet;
   }
 }
 
@@ -326,14 +321,11 @@ Future<T> showModalBottomSheetCustom<T>({
   assert(context != null);
   assert(builder != null);
   assert(debugCheckHasMaterialLocalizations(context));
-  return Navigator.push(
-      context,
-      _ModalBottomSheetRoute<T>(
-        builder: builder,
-        theme: Theme.of(context, shadowThemeOnly: true),
-        barrierLabel:
-            MaterialLocalizations.of(context).modalBarrierDismissLabel,
-      ));
+  return Navigator.push(context, _ModalBottomSheetRoute<T>(
+    builder: builder,
+    theme: Theme.of(context, shadowThemeOnly: true),
+    barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+  ));
 }
 
 /// Shows a persistent material design bottom sheet in the nearest [Scaffold].
