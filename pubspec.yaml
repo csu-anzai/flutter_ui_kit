@@ -58,4 +58,5 @@ flutter:
     - assets/fully_regulated.svg
     - assets/macbook_user.svg
     - assets/secure_funds.svg
+    - assets/deposit.svg
     - lib/assets/icons/
