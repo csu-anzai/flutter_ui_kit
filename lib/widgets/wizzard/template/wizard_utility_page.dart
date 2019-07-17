@@ -2,26 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_ui_kit/color.dart';
 import 'package:flutter_ui_kit/text.dart';
-import 'package:flutter_ui_kit/widgets/layout/page_template.dart';
 import 'package:flutter_ui_kit/widgets/text/heading.dart';
 import 'package:flutter_ui_kit/widgets/text/heading_type.dart';
 
-import 'app_bar.dart';
-
-class UtilityTemplate extends StatelessWidget {
+class WizardUtilityPage extends StatelessWidget {
   final SvgPicture picture;
   final String heading;
   final String body;
-  final Widget action;
 
-  const UtilityTemplate(this.heading, this.body, this.picture, this.action)
-      : super();
+  const WizardUtilityPage(this.heading, this.body, this.picture) : super();
 
   @override
   Widget build(BuildContext context) {
-    return PageTemplate(
-      appBar: const MainAppBar(implyLeading: false),
-      child: Padding(
+    return Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
@@ -57,13 +50,7 @@ class UtilityTemplate extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: action,
-            )
           ],
-        ),
-      ),
-    );
+        ));
   }
 }

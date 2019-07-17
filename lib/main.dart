@@ -7,6 +7,7 @@ import 'package:flutter_ui_kit/stories/popover.dart';
 import 'package:flutter_ui_kit/stories/sliders.dart';
 import 'package:flutter_ui_kit/stories/typography.dart';
 import 'package:flutter_ui_kit/stories/icons.dart';
+import 'package:flutter_ui_kit/stories/wizard.dart';
 import 'package:flutter_ui_kit/story_book/story_book.dart';
 import 'package:flutter_ui_kit/theme.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,8 @@ void main() {
             pinWidget: SliverWidgets().bottomButton()
           ),
           Iconography(),
-          Sliders()
+          Sliders(),
+          WizardStory()
         ],
       ),
     ),
