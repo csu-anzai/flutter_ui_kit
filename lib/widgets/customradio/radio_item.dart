@@ -21,8 +21,8 @@ class RadioItem extends StatelessWidget {
             width: 30.0,
             child: new Center(
               child: _item.isSelected
-                  ? const Icon(Icons.check, size: 20.0, color: Colors.white)
-                  : const Icon(Icons.check_box_outline_blank,
+                  ? const Icon(Icons.check, size: 20.0, color: AppColor.deepWhite)
+                  : const Icon(Icons.check,
                       color: AppColor.deepWhite),
             ),
             decoration: new BoxDecoration(
@@ -30,7 +30,7 @@ class RadioItem extends StatelessWidget {
                   _item.isSelected ? AppColor.darkerGreen : Colors.transparent,
               border: new Border.all(
                   width: 1.0,
-                  color: _item.isSelected ? AppColor.darkerGreen : Colors.grey),
+                  color: _item.isSelected ? AppColor.darkerGreen : AppColor.grey),
               shape: BoxShape.circle,
             ),
           ),

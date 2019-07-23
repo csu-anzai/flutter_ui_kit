@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_ui_kit/widgets/customradio/custom_radio.dart';
 import 'package:flutter_ui_kit/widgets/filled_button.dart';
 import 'package:flutter_ui_kit/widgets/layout/generic_template.dart';
 import 'package:flutter_ui_kit/widgets/layout/utility_template.dart';
@@ -7,10 +8,13 @@ import 'package:flutter_ui_kit/widgets/text/heading.dart';
 import 'package:flutter_ui_kit/widgets/text/heading_type.dart';
 import 'package:flutter_ui_kit/widgets/text/label_value_pair.dart';
 
+import '../color.dart';
+
 class Layouts extends StatelessWidget {
   static const String utilityLayoutRoute = '/utility-layout-page';
   static const String dismissibleLayoutRoute = '/dismissible-layout-page';
   static const String infoLayoutRoute = '/info-layout-page';
+  static const String paymentMethodLayout = '/payment-method';
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,8 @@ class Layouts extends StatelessWidget {
           children: [
             _utilityLayout(context),
             _dismissibleLayout(context),
-            _infoLayout(context)
+            _infoLayout(context),
+            _paymentMethod(context)
           ],
         ),
       ),
@@ -148,6 +153,66 @@ class Layouts extends StatelessWidget {
                                 Navigator.pop(context);
                               })
                         ]),
+              ));
+        })));
+  }
+
+  Widget _paymentMethod(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Center(
+            child: FilledButton('I\'m all about that payment methods',
+                onPressed: () {
+          Navigator.push<dynamic>(
+              context,
+              MaterialPageRoute<dynamic>(
+                settings: const RouteSettings(name: infoLayoutRoute),
+                builder: (_) => GenericTemplate(
+                    const Heading('Deposit',
+                        headingType: HeadingType.HEADING_2,
+                        textAlign: TextAlign.left),
+                        Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 60.0),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                            'Add Euro or cryptocurrency to your Change account.',
+                                            textAlign: TextAlign.left,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .body2
+                                                .copyWith(
+                                                    color: AppColor.semiGrey)),
+                                      )),
+                                  Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 30.0),
+                                      child: Text('I want to deposit:',
+                                          textAlign: TextAlign.left,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .body2
+                                              .copyWith(
+                                                  color: AppColor.semiGrey))),
+                                  Expanded(
+                                      flex: 1,
+                                      child: CustomRadio(
+                                        radioElements:
+                                            CustomRadio.availableRadioModels(),
+                                      )),
+                                ])),
+                    const SizedBox.shrink(),
+                    leadingWidget: IconButton(
+                        icon: const Icon(Icons.arrow_back),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        })),
               ));
         })));
   }
