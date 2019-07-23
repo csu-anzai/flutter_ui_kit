@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
 
 class CustomDatePicker extends StatefulWidget {
+  final DateTime dateTime;
+
+  const CustomDatePicker( {this.dateTime} );
+
   @override
   State<StatefulWidget> createState() => _DatePickerBottomSheetState();
 }
@@ -21,7 +25,7 @@ class _DatePickerBottomSheetState extends State<CustomDatePicker> {
     _dayCtrl.text = null;
     _monthCtrl.text = null;
     _yearCtrl.text = null;
-    _dateTime = DateTime.now();
+    _dateTime = widget.dateTime;
   }
 
   /// Display time picker.
@@ -71,7 +75,7 @@ class _DatePickerBottomSheetState extends State<CustomDatePicker> {
                     )))),
         new Flexible(
             child: Container(
-                width: 60,
+                width: 80,
                 child: TextField(
                   controller: _monthCtrl,
                   decoration: const InputDecoration(
