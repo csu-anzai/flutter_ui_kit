@@ -12,7 +12,6 @@ import 'package:flutter_ui_kit/stories/wizard.dart';
 import 'package:flutter_ui_kit/story_book/story_book.dart';
 import 'package:flutter_ui_kit/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_kit/widgets/customradio/custom_radio.dart';
 import 'package:flutter_ui_kit/widgets/layout/sliver_template.dart';
 import 'package:flutter_ui_kit/widgets/sliver_widgets.dart';
 import 'package:flutter_ui_kit/stories/progress_indicators.dart';
@@ -44,8 +43,7 @@ void main() {
           Iconography(),
           Sliders(),
           WizardStory(),
-          Sliders(),
-          CustomRadio(radioElements: CustomRadio.availableRadioModels())
+          Sliders()
         ],
       ),
     ),
