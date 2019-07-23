@@ -12,6 +12,7 @@ class RadioItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
+      margin: const EdgeInsets.only(top: 14.00),
       child: new Row(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
@@ -40,7 +41,7 @@ class RadioItem extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10.00, right: 10.00),
                   child: _item.svgPicture),
               Padding(
-                  padding: const EdgeInsets.only(left: 20.00),
+                  padding: const EdgeInsets.only(left: 5.00),
                   child: Text(_item.text))
             ]),
           ),
