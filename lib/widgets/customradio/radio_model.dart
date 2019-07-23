@@ -4,5 +4,6 @@ class RadioModel {
   bool isSelected;
   final String text;
   SvgPicture svgPicture;
-  RadioModel(this.text, {this.svgPicture, this.isSelected});
+  final String textShortform;
+  RadioModel(this.text, {this.svgPicture, this.isSelected, this.textShortform});
 }
