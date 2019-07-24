@@ -24,7 +24,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   @override
   void initState() {
     super.initState();
-    _dateTime = null;
+    _dateTime = DateTime.now();
     widget.onChange(_dateTime);
   }
 
@@ -52,6 +52,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       _dayCtrl.text = _dateTime.day.toString().padLeft(2, '0');
       _monthCtrl.text = _dateTime.month.toString().padLeft(2, '0');
       _yearCtrl.text = _dateTime.year.toString();
+      widget.onChange(_dateTime);
     });
   }
 
