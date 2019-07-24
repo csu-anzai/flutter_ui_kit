@@ -45,7 +45,7 @@ void main() {
           Iconography(),
           Sliders(),
           WizardStory(),
-          CustomDatePicker(),
+          CustomDatePicker(onChange: (DateTime value) {}),
           CustomRadio(radioElements: CustomRadio.availableRadioModels())
         ],
       ),
