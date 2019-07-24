@@ -24,7 +24,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   @override
   void initState() {
     super.initState();
-    _dateTime = DateTime.now();
+    _dateTime = null;
     widget.onChange(_dateTime);
   }
 
