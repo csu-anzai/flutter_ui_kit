@@ -24,9 +24,6 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   @override
   void initState() {
     super.initState();
-    _dayCtrl.text = null;
-    _monthCtrl.text = null;
-    _yearCtrl.text = null;
     _dateTime = DateTime.now();
     widget.onChange(_dateTime);
   }
@@ -70,6 +67,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                     child: TextField(
                       focusNode: DisabledFocusNode(),
                       controller: _dayCtrl,
+                      key: const Key('day-of-birth'),
                       decoration: const InputDecoration(
                         labelText: 'Day',
                         hintText: 'DD',
@@ -83,6 +81,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                 child: TextField(
                   focusNode: DisabledFocusNode(),
                   controller: _monthCtrl,
+                  key: const Key('month-of-birth'),
                   decoration: const InputDecoration(
                     labelText: 'Month',
                     hintText: 'MM',
@@ -96,6 +95,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                 child: TextField(
                   focusNode: DisabledFocusNode(),
                   controller: _yearCtrl,
+                  key: const Key('year-of-birth'),
                   decoration: const InputDecoration(
                     labelText: 'Year',
                     hintText: 'YYYY',
