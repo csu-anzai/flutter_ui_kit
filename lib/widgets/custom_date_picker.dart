@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
+import 'package:flutter_ui_kit/widgets/filled_button.dart';
 
 class CustomDatePicker extends StatefulWidget {
-  final DateTime dateTime;
 
-  const CustomDatePicker( {this.dateTime} );
+  const CustomDatePicker();
 
   @override
-  State<StatefulWidget> createState() => _DatePickerBottomSheetState();
+  State<StatefulWidget> createState() => _CustomDatePickerState();
 }
 
-class _DatePickerBottomSheetState extends State<CustomDatePicker> {
+class _CustomDatePickerState extends State<CustomDatePicker> {
   final _format = 'dd-MM-yyyy';
   final _dayCtrl = TextEditingController();
   final _monthCtrl = TextEditingController();
@@ -25,7 +25,7 @@ class _DatePickerBottomSheetState extends State<CustomDatePicker> {
     _dayCtrl.text = null;
     _monthCtrl.text = null;
     _yearCtrl.text = null;
-    _dateTime = widget.dateTime;
+    _dateTime = DateTime.now();
   }
 
   /// Display time picker.
@@ -57,7 +57,8 @@ class _DatePickerBottomSheetState extends State<CustomDatePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return new Scaffold(
+        body: Container(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         new Flexible(
             child: Padding(
@@ -65,6 +66,7 @@ class _DatePickerBottomSheetState extends State<CustomDatePicker> {
                 child: Container(
                     width: 60,
                     child: TextField(
+                      focusNode: DisabledFocusNode(),
                       controller: _dayCtrl,
                       decoration: const InputDecoration(
                         labelText: 'Day',
@@ -77,6 +79,7 @@ class _DatePickerBottomSheetState extends State<CustomDatePicker> {
             child: Container(
                 width: 80,
                 child: TextField(
+                  focusNode: DisabledFocusNode(),
                   controller: _monthCtrl,
                   decoration: const InputDecoration(
                     labelText: 'Month',
@@ -89,6 +92,7 @@ class _DatePickerBottomSheetState extends State<CustomDatePicker> {
             child: Padding(
                 padding: const EdgeInsets.only(right: 30.00),
                 child: TextField(
+                  focusNode: DisabledFocusNode(),
                   controller: _yearCtrl,
                   decoration: const InputDecoration(
                     labelText: 'Year',
@@ -98,6 +102,23 @@ class _DatePickerBottomSheetState extends State<CustomDatePicker> {
                   onTap: _showDatePicker,
                 )))
       ]),
+    ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 10.0),
+        child: new FilledButton(
+          'Next',
+          fullWidth: true,
+          onPressed: () {
+            print('You selected: $_dateTime');
+          },
+        )),
     );
+  }
+}
+
+class DisabledFocusNode extends FocusNode {
+  @override
+  bool consumeKeyboardToken() {
+    return false;
   }
 }
