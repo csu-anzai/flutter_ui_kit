@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
-import 'package:flutter_ui_kit/widgets/filled_button.dart';
+
+typedef Callback = void Function(DateTime value);
 
 class CustomDatePicker extends StatefulWidget {
+  final Callback onChange;
 
-  const CustomDatePicker();
+  const CustomDatePicker({@required this.onChange});
 
   @override
   State<StatefulWidget> createState() => _CustomDatePickerState();
@@ -26,6 +28,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     _monthCtrl.text = null;
     _yearCtrl.text = null;
     _dateTime = DateTime.now();
+    widget.onChange(_dateTime);
   }
 
   /// Display time picker.
@@ -57,8 +60,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        body: Container(
+    return Container(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         new Flexible(
             child: Padding(
@@ -102,16 +104,6 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                   onTap: _showDatePicker,
                 )))
       ]),
-    ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(left: 10.0),
-        child: new FilledButton(
-          'Next',
-          fullWidth: true,
-          onPressed: () {
-            print('You selected: $_dateTime');
-          },
-        )),
     );
   }
 }
