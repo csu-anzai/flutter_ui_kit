@@ -23,8 +23,8 @@ class Graph extends StatelessWidget {
   void _drawMaxMinMarkers(Canvas context, double width, double height) {
     const offsetLeftX = 35.0;
     const offsetRightX = 35.0;
-    const offsetTopY = 5.0;
-    const offsetDownY = 25.0;
+    const offsetTopY = 0.0;
+    const offsetDownY = 0.0;
     const lineWidth = 1.0;
 
     double _calcXForMarker(double x, double width) {
@@ -53,21 +53,21 @@ class Graph extends StatelessWidget {
     final heightNormalizer = height / (maxValue - minValue);
     var maxValueDisplayed = false;
     var minValueDisplayed = false;
+    var decimalPrecision = 2;
+    if (maxValue <= 100 && minValue <= 100) {
+      decimalPrecision = 3;
+    }
+    if (maxValue <= 1 && minValue <= 1) {
+      decimalPrecision = 4;
+    }
 
-    void _drawLabel(double item, int i) {
-      var displayedDecimals = 2;
-      if (item < 1) {
-        displayedDecimals = 4;
-      } else if (item < 1000) {
-        displayedDecimals = 3;
-      }
-
+    void _drawLabel(double item, int i, int decimalPrecision) {
       final tp = new TextPainter(
           text: new TextSpan(
               style: AppText.graphTextStyle.copyWith(
                   color: AppColor.deepWhite,
                   backgroundColor: Colors.transparent),
-              text: (labelPrefix + item.toStringAsFixed(displayedDecimals)).padLeft(9)),
+              text: (labelPrefix + item.toStringAsFixed(decimalPrecision)).padLeft(10)),
           textDirection: TextDirection.ltr,
           textAlign: TextAlign.left);
       tp.layout();
@@ -80,7 +80,7 @@ class Graph extends StatelessWidget {
       final paint = Paint();
       context.drawRRect(
           RRect.fromRectAndRadius(
-              Rect.fromLTWH(offset.dx - 3, offset.dy - 3, 62, 20),
+              Rect.fromLTWH(offset.dx - 3, offset.dy - 3, 68, 20),
               const Radius.circular(6.0)),
           paint);
       tp.paint(context, offset);
@@ -90,11 +90,11 @@ class Graph extends StatelessWidget {
       final item = data[i];
       if (!maxValueDisplayed && item == maxValue) {
         maxValueDisplayed = true;
-        _drawLabel(item, i);
+        _drawLabel(item, i, decimalPrecision);
       }
       if (!minValueDisplayed && item == minValue) {
         minValueDisplayed = true;
-        _drawLabel(item, i);
+        _drawLabel(item, i, decimalPrecision);
       }
     }
   }
