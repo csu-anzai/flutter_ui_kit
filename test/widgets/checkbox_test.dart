@@ -17,10 +17,11 @@ void main() {
   group('Checkboxes', () {
     testWidgets('renders simple checkbox widget', (WidgetTester tester) async {
       await tester.pumpWidget(wrapInMaterialApp(
-          const CustomCheckbox(
+          CustomCheckbox(
               isChecked: true,
               label: Text('Sample Checkbox'),
               errorText: 'Error message',
+              onChanged: (checked){},
           )
       )
       );

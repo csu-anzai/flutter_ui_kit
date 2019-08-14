@@ -59,9 +59,9 @@ class Checkboxes extends StatelessWidget {
 
         return CustomCheckbox(
           isChecked: isChecked,
+          onChanged: (isChecked){_showDialog(context, isChecked);},
           label: Text(label),
           errorText: errorText,
-          onChanged: (isChecked){_showDialog(context, isChecked);},
         );
       },
     ),

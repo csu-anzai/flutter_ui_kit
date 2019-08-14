@@ -12,9 +12,9 @@ class CustomCheckbox extends StatelessWidget {
 
 
   const CustomCheckbox({
+    @required this.isChecked,
+    @required this.onChanged,
     Key key,
-    this.isChecked = false,
-    this.onChanged,
     this.label,
     this.errorText,
   }) : super(key: key);
@@ -41,9 +41,8 @@ class CustomCheckbox extends StatelessWidget {
   }
 
   Widget buildCheckboxTile() {
-    return InkWell (
-        splashColor: AppColor.darkerGreen,
-        onTap: (){onChanged(!isChecked);},
+    return GestureDetector (
+      onTap: (){onChanged(!isChecked);},
       child: Container(
         margin: const EdgeInsets.only(top: 14.00),
         child: new Row(
