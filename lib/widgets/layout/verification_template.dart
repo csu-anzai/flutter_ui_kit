@@ -9,20 +9,24 @@ import 'package:flutter_ui_kit/widgets/text/heading_type.dart';
 import 'app_bar.dart';
 
 class VerificationTemplate extends StatelessWidget {
+  final Widget leadingWidget;
+  final List<Widget> tailingWidget;
   final SvgPicture picture;
   final String heading;
   final String body;
   final Widget action;
 
-  const VerificationTemplate(this.heading, this.body, this.picture, this.action)
+  const VerificationTemplate(this.heading, this.body, this.picture, this.action,{this.leadingWidget, this.tailingWidget})
       : super();
 
   @override
   Widget build(BuildContext context) {
     return PageTemplate(
-      appBar: const MainAppBar(implyLeading: false),
+      appBar: MainAppBar(
+        implyLeading: leadingWidget != null, leadingWidget: leadingWidget, tailingWidget: tailingWidget,
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.only(top:15.0, bottom: 15),
         child: Column(
           children: [
             Expanded(

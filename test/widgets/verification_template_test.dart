@@ -23,9 +23,13 @@ void main() {
         fullWidth: true,
         narrow: false,
       );
-      await tester.pumpWidget(wrapInMaterialApp(VerificationTemplate(header, text, pic, action)));
+
+      final backbutton = BackButton();
+
+      await tester.pumpWidget(wrapInMaterialApp(VerificationTemplate(header, text, pic, action, leadingWidget: backbutton,)));
 
       expect(find.byType(AppBar), findsOneWidget);
+      expect(find.byType(BackButton), findsOneWidget);
       expect(find.text(header), findsOneWidget);
       expect(find.text(text), findsOneWidget);
       expect(find.byType(SvgPicture), findsOneWidget);

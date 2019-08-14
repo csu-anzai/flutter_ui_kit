@@ -101,7 +101,8 @@ class Layouts extends StatelessWidget {
                           },
                           fullWidth: true,
                           narrow: false,
-                        ))));
+                        ),
+                    leadingWidget: const BackButton(),)));
           },
           fullWidth: false,
           narrow: false,
