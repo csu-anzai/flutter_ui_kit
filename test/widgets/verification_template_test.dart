@@ -24,7 +24,7 @@ void main() {
         narrow: false,
       );
 
-      final backbutton = BackButton();
+      const backbutton = const BackButton();
 
       await tester.pumpWidget(wrapInMaterialApp(VerificationTemplate(header, text, pic, action, leadingWidget: backbutton,)));
 
