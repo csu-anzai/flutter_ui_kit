@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_ui_kit/widgets/filled_button.dart';
-import 'package:flutter_ui_kit/widgets/layout/verification_template.dart';
+import 'package:flutter_ui_kit/widgets/layout/informative_template.dart';
 
 import '../wrap_in_material_app.dart';
 
@@ -26,7 +26,7 @@ void main() {
 
       const backbutton = const BackButton();
 
-      await tester.pumpWidget(wrapInMaterialApp(VerificationTemplate(header, text, pic, action, leadingWidget: backbutton,)));
+      await tester.pumpWidget(wrapInMaterialApp(InformativeTemplate(header, text, pic, action, leadingWidget: backbutton,)));
 
       expect(find.byType(AppBar), findsOneWidget);
       expect(find.byType(BackButton), findsOneWidget);

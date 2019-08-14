@@ -5,7 +5,7 @@ import 'package:flutter_ui_kit/widgets/filled_button.dart';
 import 'package:flutter_ui_kit/widgets/layout/generic_template.dart';
 import 'package:flutter_ui_kit/widgets/layout/titled_generic_template.dart';
 import 'package:flutter_ui_kit/widgets/layout/utility_template.dart';
-import 'package:flutter_ui_kit/widgets/layout/verification_template.dart';
+import 'package:flutter_ui_kit/widgets/layout/informative_template.dart';
 import 'package:flutter_ui_kit/widgets/text/heading.dart';
 import 'package:flutter_ui_kit/widgets/text/heading_type.dart';
 import 'package:flutter_ui_kit/widgets/text/label_value_pair.dart';
@@ -14,7 +14,7 @@ import 'package:flutter_ui_kit/widgets/text_button.dart';
 import '../color.dart';
 
 class Layouts extends StatelessWidget {
-  static const String verificationLayoutRoute = '/verification-layout-page';
+  static const String informativeLayoutRoute = '/informative-layout-page';
   static const String utilityLayoutRoute = '/utility-layout-page';
   static const String dismissibleLayoutRoute = '/dismissible-layout-page';
   static const String infoLayoutRoute = '/info-layout-page';
@@ -80,14 +80,14 @@ class Layouts extends StatelessWidget {
       padding: const EdgeInsets.all(30.0),
       child: Center(
         child: FilledButton(
-          'I\'m all about that verification',
+          'I\'m all about that txt txt pic',
           onPressed: () {
             Navigator.push<dynamic>(
                 context,
                 MaterialPageRoute<dynamic>(
-                    settings: const RouteSettings(name: verificationLayoutRoute),
-                    builder: (_) => VerificationTemplate(
-                        'Verification template',
+                    settings: const RouteSettings(name: informativeLayoutRoute),
+                    builder: (_) => InformativeTemplate(
+                        'Informative template',
                         'To verify your account, we need you to submit another identity document, alongside with your residence permit.\n\nYou can submit a photo of your passport, national ID, or drivers’ license.',
                         SvgPicture.asset(
                           'assets/update-app.svg',
