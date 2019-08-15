@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_kit/color.dart';
 
 import 'change_app_icons.dart';
 

@@ -19,7 +19,7 @@ void main() {
       await tester.pumpWidget(wrapInMaterialApp(
           CustomCheckbox(
               isChecked: true,
-              label: Text('Sample Checkbox'),
+              label: const Text('Sample Checkbox'),
               errorText: 'Error message',
               onChanged: (checked){},
           )
