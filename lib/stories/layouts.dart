@@ -14,7 +14,7 @@ import 'package:flutter_ui_kit/widgets/text_button.dart';
 import '../color.dart';
 
 class Layouts extends StatelessWidget {
-  static const String informativeLayoutRoute = '/informative-layout-page';
+  static const String informationLayoutRoute = '/information-layout-page';
   static const String utilityLayoutRoute = '/utility-layout-page';
   static const String dismissibleLayoutRoute = '/dismissible-layout-page';
   static const String infoLayoutRoute = '/info-layout-page';
@@ -85,25 +85,24 @@ class Layouts extends StatelessWidget {
             Navigator.push<dynamic>(
                 context,
                 MaterialPageRoute<dynamic>(
-                    settings: const RouteSettings(name: informativeLayoutRoute),
+                    settings: const RouteSettings(name: informationLayoutRoute),
                     builder: (_) => InformationTemplate(
-                          'Informative template',
-                          'To verify your account, we need you to submit another identity document, alongside with your residence permit.\n\nYou can submit a photo of your passport, national ID, or drivers’ license.',
-                          SvgPicture.asset(
-                            'assets/update-app.svg',
-                            width: 200.0,
-                            height: 200.0,
-                          ),
-                          FilledButton(
-                            'Back',
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            fullWidth: true,
-                            narrow: false,
-                          ),
-                          leadingWidget: const BackButton(),
-                        )));
+                        'Information template',
+                        'To verify your account, we need you to submit another identity document, alongside with your residence permit.\n\nYou can submit a photo of your passport, national ID, or drivers’ license.',
+                        SvgPicture.asset(
+                          'assets/update-app.svg',
+                          width: 200.0,
+                          height: 200.0,
+                        ),
+                        FilledButton(
+                          'Back',
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          fullWidth: true,
+                          narrow: false,
+                        ),
+                    leadingWidget: const BackButton(),)));
           },
           fullWidth: false,
           narrow: false,
@@ -214,39 +213,42 @@ class Layouts extends StatelessWidget {
                     const Heading('Deposit',
                         headingType: HeadingType.HEADING_2,
                         textAlign: TextAlign.left),
-                    Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                  padding: const EdgeInsets.only(bottom: 60.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                        'Add Euro or cryptocurrency to your Change account.',
-                                        textAlign: TextAlign.left,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .body2
-                                            .copyWith(
-                                                color: AppColor.semiGrey)),
-                                  )),
-                              Padding(
-                                  padding: const EdgeInsets.only(bottom: 30.0),
-                                  child: Text('I want to deposit:',
-                                      textAlign: TextAlign.left,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .body2
-                                          .copyWith(color: AppColor.semiGrey))),
-                              Expanded(
-                                  flex: 1,
-                                  child: CustomRadio(
-                                    radioElements:
-                                        CustomRadio.availableRadioModels(),
-                                  )),
-                            ])),
+                        Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 60.0),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                            'Add Euro or cryptocurrency to your Change account.',
+                                            textAlign: TextAlign.left,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .body2
+                                                .copyWith(
+                                                    color: AppColor.semiGrey)),
+                                      )),
+                                  Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 30.0),
+                                      child: Text('I want to deposit:',
+                                          textAlign: TextAlign.left,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .body2
+                                              .copyWith(
+                                                  color: AppColor.semiGrey))),
+                                  Expanded(
+                                      flex: 1,
+                                      child: CustomRadio(
+                                        radioElements:
+                                            CustomRadio.availableRadioModels(),
+                                      )),
+                                ])),
                     const SizedBox.shrink(),
                     leadingWidget: IconButton(
                         icon: const Icon(Icons.arrow_back),
@@ -269,79 +271,67 @@ class Layouts extends StatelessWidget {
                 MaterialPageRoute<dynamic>(
                     settings: const RouteSettings(name: dismissibleLayoutRoute),
                     builder: (_) => TitledGenericTemplate(
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              const Heading(
-                                  'Exchange CAG tokens to new equity like CNG tokens',
-                                  headingType: HeadingType.HEADING_1,
-                                  textAlign: TextAlign.left),
-                              Container(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 14.0),
-                                  child: Text(
-                                      'CNG tokens give you the right to become shareholder of Change',
-                                      style: Theme.of(context).textTheme.body1),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            const Heading('Exchange CAG tokens to new equity like CNG tokens',
+                                headingType: HeadingType.HEADING_1, textAlign: TextAlign.left),
+                            Container(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 14.0),
+                                child: Text('CNG tokens give you the right to become shareholder of Change',
+                                    style: Theme.of(context).textTheme.body1),
+                              ),
+                            ),
+                            const SizedBox(height: 33,),
+                            Row(
+                              children: <Widget>[
+                                SvgPicture.asset(
+                                  'assets/update-app.svg',
+                                  width: 24,
+                                  height: 24,
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 33,
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  SvgPicture.asset(
-                                    'assets/update-app.svg',
-                                    width: 24,
-                                    height: 24,
-                                  ),
-                                  const SizedBox(
-                                    width: 6,
-                                  ),
-                                  new RichText(
-                                    textAlign: TextAlign.left,
-                                    text: new TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: 'What is token swap?',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .body2
-                                              .copyWith(
-                                                  color: AppColor.semiGrey),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                          Column(children: <Widget>[
-                            FilledButton(
-                              'Go to Swap',
-                              onPressed: () {
-                                print('Test');
-                              },
-                              fullWidth: true,
-                              narrow: false,
+                                const SizedBox(width: 6,),
+                                new RichText(
+                                  textAlign: TextAlign.left,
+                                  text: new TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: 'What is token swap?',
+                                        style: Theme.of(context).textTheme.body2.copyWith(
+                                            color: AppColor.semiGrey),
+                                      ),],),
+                                )
+                              ],
                             ),
-                            TextButton(
-                              'I\'m not CNG owner',
-                              onPressed: () {
-                                print('Test');
-                              },
-                            ),
-                          ]),
-                          leadingWidget: const CloseButton(),
-                          title: const Text(
-                            'CAG Token Swap',
+                          ],
+                        ),
+                        Column(children: <Widget>[
+                          FilledButton(
+                            'Go to Swap',
+                            onPressed: () {
+                              print('Test');
+                            },
+                            fullWidth: true,
+                            narrow: false,
                           ),
-                          picture: SvgPicture.asset(
-                            'assets/update-app.svg',
-                            width: 285.0,
-                            height: 215.0,
+                          TextButton(
+                            'I\'m not CNG owner',
+                            onPressed: () {
+                              print('Test');
+                            },
                           ),
-                        )));
+                        ]),
+                        leadingWidget: const CloseButton(),
+                        title: const Text('CAG Token Swap',),
+                        picture: SvgPicture.asset(
+                          'assets/update-app.svg',
+                          width: 285.0,
+                          height: 215.0,
+                        ),
+                    )
+                )
+            );
           },
           fullWidth: false,
           narrow: false,
