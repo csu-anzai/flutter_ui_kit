@@ -10,8 +10,7 @@ void main() {
   group('InformationTemplate', () {
     testWidgets('renders the expected layout', (WidgetTester tester) async {
       const header = 'Header';
-      const text =
-          'Body';
+      const text = 'Body';
       final pic = SvgPicture.asset(
         'assets/update-app.svg',
         width: 285.0,
@@ -26,7 +25,13 @@ void main() {
 
       const backbutton = const BackButton();
 
-      await tester.pumpWidget(wrapInMaterialApp(InformationTemplate(header, text, pic, action, leadingWidget: backbutton,)));
+      await tester.pumpWidget(wrapInMaterialApp(InformationTemplate(
+        header,
+        text,
+        pic,
+        action,
+        leadingWidget: backbutton,
+      )));
 
       expect(find.byType(AppBar), findsOneWidget);
       expect(find.byType(BackButton), findsOneWidget);

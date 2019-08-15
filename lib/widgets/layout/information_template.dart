@@ -16,17 +16,20 @@ class InformationTemplate extends StatelessWidget {
   final String body;
   final Widget action;
 
-  const InformationTemplate(this.heading, this.body, this.picture, this.action,{this.leadingWidget, this.tailingWidget})
+  const InformationTemplate(this.heading, this.body, this.picture, this.action,
+      {this.leadingWidget, this.tailingWidget})
       : super();
 
   @override
   Widget build(BuildContext context) {
     return PageTemplate(
       appBar: MainAppBar(
-        implyLeading: leadingWidget != null, leadingWidget: leadingWidget, tailingWidget: tailingWidget,
+        implyLeading: leadingWidget != null,
+        leadingWidget: leadingWidget,
+        tailingWidget: tailingWidget,
       ),
       child: Padding(
-        padding: const EdgeInsets.only(top:15.0, bottom: 15),
+        padding: const EdgeInsets.only(top: 15.0, bottom: 15),
         child: Column(
           children: [
             Expanded(
