@@ -8,7 +8,7 @@ import 'package:flutter_ui_kit/widgets/text/heading_type.dart';
 
 import 'app_bar.dart';
 
-class InformativeTemplate extends StatelessWidget {
+class InformationTemplate extends StatelessWidget {
   final Widget leadingWidget;
   final List<Widget> tailingWidget;
   final SvgPicture picture;
@@ -16,7 +16,7 @@ class InformativeTemplate extends StatelessWidget {
   final String body;
   final Widget action;
 
-  const InformativeTemplate(this.heading, this.body, this.picture, this.action,{this.leadingWidget, this.tailingWidget})
+  const InformationTemplate(this.heading, this.body, this.picture, this.action,{this.leadingWidget, this.tailingWidget})
       : super();
 
   @override
