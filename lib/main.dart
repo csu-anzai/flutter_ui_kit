@@ -2,6 +2,7 @@
 import 'package:flutter_ui_kit/stories/badges.dart';
 import 'package:flutter_ui_kit/stories/buttons.dart';
 import 'package:flutter_ui_kit/stories/cards.dart';
+import 'package:flutter_ui_kit/stories/checkboxes.dart';
 import 'package:flutter_ui_kit/stories/colors.dart';
 import 'package:flutter_ui_kit/stories/graphs.dart';
 import 'package:flutter_ui_kit/stories/layouts.dart';
@@ -50,6 +51,7 @@ void main() {
           WizardStory(),
           CustomDatePicker(onChange: (dateTime) {}),
           CustomRadio(radioElements: CustomRadio.availableRadioModels()),
+          Checkboxes(),
           Graphs(),
         ],
       ),
