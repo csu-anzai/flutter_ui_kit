@@ -29,7 +29,7 @@ class InformationTemplate extends StatelessWidget {
         tailingWidget: tailingWidget,
       ),
       child: Padding(
-        padding: const EdgeInsets.only(top: 15.0, bottom: 15),
+        padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
             Expanded(
