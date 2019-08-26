@@ -42,15 +42,15 @@ class InformationTemplate extends StatelessWidget {
                   children: <Widget>[
                     Heading(
                       heading,
-                      headingType: HeadingType.HEADING_1,
+                      headingType: HeadingType.HEADING_2,
                       textAlign: TextAlign.left,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
+                      padding: const EdgeInsets.only(top: 14.0),
                       child: Text(body,
                           textAlign: TextAlign.left,
                           style:
-                              AppText.body1.copyWith(color: AppColor.semiGrey)),
+                              AppText.body2.copyWith(color: AppColor.semiGrey)),
                     ),
                   ],
                 ),
