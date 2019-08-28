@@ -9,13 +9,15 @@ class CustomDatePicker extends StatelessWidget {
   final _monthCtrl = TextEditingController();
   final _yearCtrl = TextEditingController();
   final Callback onChange;
+  final DateTime dateTime;
 
-  CustomDatePicker({@required this.onChange});
-
-  static DateTime _dateTime;
+  CustomDatePicker({@required this.onChange, this.dateTime});
 
   @override
   Widget build(BuildContext context) {
+    if (dateTime != null) {
+      updateState(dateTime);
+    }
     return
         Container(
             child: Row(
@@ -78,18 +80,17 @@ class CustomDatePicker extends StatelessWidget {
   void _showDatePicker(BuildContext context) {
     DatePicker.showDatePicker(
       context,
-      initialDateTime: _dateTime != null ? DateTime.now() : _dateTime,
+      initialDateTime: dateTime == null ? DateTime.now() : dateTime,
       dateFormat: _format,
       onCancel: () {
-        updateState(_dateTime);
+        updateState(dateTime);
       },
       onChange: (dateTime, List<int> index) {
         updateState(dateTime);
       },
-      onConfirm: (dateTime, List<int> index) {
-        updateState(dateTime);
-        _dateTime = dateTime;
-        onChange(dateTime);
+      onConfirm: (_dateTime, List<int> index) {
+        updateState(_dateTime);
+        onChange(_dateTime);
       },
     );
   }
