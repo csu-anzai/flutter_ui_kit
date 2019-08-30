@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_ui_kit/widgets/customradio/custom_radio.dart';
 import 'package:flutter_ui_kit/widgets/filled_button.dart';
+import 'package:flutter_ui_kit/widgets/layout/buy_sell_template.dart';
 import 'package:flutter_ui_kit/widgets/layout/generic_template.dart';
 import 'package:flutter_ui_kit/widgets/layout/information_template.dart';
 import 'package:flutter_ui_kit/widgets/layout/titled_generic_template.dart';
@@ -19,6 +20,7 @@ class Layouts extends StatelessWidget {
   static const String dismissibleLayoutRoute = '/dismissible-layout-page';
   static const String infoLayoutRoute = '/info-layout-page';
   static const String paymentMethodLayout = '/payment-method';
+  static const String buySellLayout = '/buy-sell';
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,8 @@ class Layouts extends StatelessWidget {
             _dismissibleLayout(context),
             _infoLayout(context),
             _paymentMethod(context),
-            _landingPage(context)
+            _landingPage(context),
+            _buySellLayout(context),
           ],
         ),
       ),
@@ -67,6 +70,52 @@ class Layouts extends StatelessWidget {
                           fullWidth: true,
                           narrow: false,
                         ))));
+          },
+          fullWidth: false,
+          narrow: false,
+        ),
+      ),
+    );
+  }
+
+  Widget _buySellLayout(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(30.0),
+      child: Center(
+        child: FilledButton(
+          'I\'m all about Buy/Sell',
+          onPressed: () {
+            Navigator.push<dynamic>(
+                context,
+                MaterialPageRoute<dynamic>(
+                  settings: const RouteSettings(name: buySellLayout),
+                  builder: (_) => BuySellTemplate(
+                    switcherLabels: const ['BTC', 'EUR'],
+                    currencySymbols: const ['₿', '€'],
+                    showcaseLabel: 'Payment method',
+                    errorText: 'Sample error message',
+                    showcase: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Icon(Icons.attach_money),
+                        const SizedBox(width: 10),
+                        Text('Sample Wallet',
+                            style: Theme.of(context).textTheme.body2)
+                      ],
+                    ),
+                    amountChanged: (amts) =>
+                        print('New Amounts: ${amts.key} - ${amts.value}'),
+                    action: FilledButton(
+                      'Buy',
+                      onPressed: () {},
+                      fullWidth: true,
+                    ),
+                    mainTitle: 'Buy Bitcoin',
+                    subTitle: '€110.0 Available',
+                  ),
+                ));
           },
           fullWidth: false,
           narrow: false,
@@ -165,37 +214,37 @@ class Layouts extends StatelessWidget {
               MaterialPageRoute<dynamic>(
                 settings: const RouteSettings(name: infoLayoutRoute),
                 builder: (_) => GenericTemplate(
-                        const Heading(
-                            'Invite a friend and you both get €10 worth of Bitcoin',
-                            headingType: HeadingType.HEADING_2,
-                            textAlign: TextAlign.left),
-                        Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: Column(children: <Widget>[
-                              const LabelValuePair(
-                                  labelText: 'Invite Link',
-                                  valueText: 'getchange.com/r/2415',
-                                  copyToClipboardEnabled: true),
-                              Expanded(
-                                flex: 1,
-                                child: SvgPicture.asset(
-                                  'assets/referral-screen.svg',
-                                  width: 285.0,
-                                  height: 215.0,
-                                ),
-                              ),
-                            ])),
-                        FilledButton('Invite friends', fullWidth: true,
-                            onPressed: () {
-                          print('you clicked invite friends');
-                        }),
-                        tailingWidget: [
-                          IconButton(
-                              icon: const Icon(Icons.info_outline),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              })
-                        ]),
+                    const Heading(
+                        'Invite a friend and you both get €10 worth of Bitcoin',
+                        headingType: HeadingType.HEADING_2,
+                        textAlign: TextAlign.left),
+                    Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Column(children: <Widget>[
+                          const LabelValuePair(
+                              labelText: 'Invite Link',
+                              valueText: 'getchange.com/r/2415',
+                              copyToClipboardEnabled: true),
+                          Expanded(
+                            flex: 1,
+                            child: SvgPicture.asset(
+                              'assets/referral-screen.svg',
+                              width: 285.0,
+                              height: 215.0,
+                            ),
+                          ),
+                        ])),
+                    FilledButton('Invite friends', fullWidth: true,
+                        onPressed: () {
+                      print('you clicked invite friends');
+                    }),
+                    tailingWidget: [
+                      IconButton(
+                          icon: const Icon(Icons.info_outline),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          })
+                    ]),
               ));
         })));
   }

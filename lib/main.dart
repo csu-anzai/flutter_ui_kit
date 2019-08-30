@@ -1,10 +1,11 @@
+import 'package:flutter_ui_kit/stories/badges.dart';
 
 import 'package:flutter_ui_kit/stories/custom_label_value.dart';
-import 'package:flutter_ui_kit/stories/badges.dart';
 import 'package:flutter_ui_kit/stories/buttons.dart';
 import 'package:flutter_ui_kit/stories/cards.dart';
 import 'package:flutter_ui_kit/stories/checkboxes.dart';
 import 'package:flutter_ui_kit/stories/colors.dart';
+import 'package:flutter_ui_kit/stories/currency_displays.dart';
 import 'package:flutter_ui_kit/stories/graphs.dart';
 import 'package:flutter_ui_kit/stories/layouts.dart';
 import 'package:flutter_ui_kit/stories/numpads.dart';
@@ -25,7 +26,6 @@ import 'package:flutter_ui_kit/stories/progress_indicators.dart';
 import 'package:flutter_ui_kit/stories/password_validators.dart';
 
 void main() {
-
   runApp(
     MaterialApp(
       theme: theme,
@@ -44,10 +44,9 @@ void main() {
           PasswordValidators(),
           Iconography(),
           SliverTemplate(
-            content: SliverWidgets().content(),
-            sliverList: SliverWidgets().buildSliverList(),
-            pinWidget: SliverWidgets().bottomButton()
-          ),
+              content: SliverWidgets().content(),
+              sliverList: SliverWidgets().buildSliverList(),
+              pinWidget: SliverWidgets().bottomButton()),
           Iconography(),
           Sliders(),
           WizardStory(),
@@ -55,7 +54,8 @@ void main() {
           CustomRadio(radioElements: CustomRadio.availableRadioModels()),
           Checkboxes(),
           Graphs(),
-          CustomLabelValue()
+          CustomLabelValue(),
+          CurrencyDisplays(),
         ],
       ),
     ),
