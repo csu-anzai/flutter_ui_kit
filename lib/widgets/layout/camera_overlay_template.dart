@@ -38,8 +38,7 @@ class CameraState extends State<CameraWidget> {
         bottomNavigationBar: BottomAppBar(
           color: Colors.black26,
           child: Container(
-            decoration:
-                BoxDecoration(color: Colors.black26),
+            decoration: BoxDecoration(color: Colors.black26),
             height: showCamera ? 175 : 75,
             child: showCamera
                 ? Column(
@@ -64,7 +63,13 @@ class CameraState extends State<CameraWidget> {
                           ),
                         ),
                       ),
-                      captureControlRowWidget()
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          captureControlRowWidget(),
+                          cameraTogglesRowWidget()
+                        ],
+                      ),
                     ],
                   )
                 : editCaptureControlRowWidget(),
@@ -112,7 +117,7 @@ class CameraState extends State<CameraWidget> {
   Future<void> setupCameras() async {
     try {
       cameras = await availableCameras();
-      controller = new CameraController(cameras[0], ResolutionPreset.ultraHigh);
+      controller = new CameraController(cameras[1], ResolutionPreset.ultraHigh);
       await controller.initialize();
     } on CameraException catch (_) {
       setState(() {
@@ -165,7 +170,16 @@ class CameraState extends State<CameraWidget> {
 
   Widget imagePreviewWidget() {
     final size = MediaQuery.of(context).size;
-    return Scaffold(body: Center(child: imagePath == null ? null : Image.file(File(imagePath), width: size.width, height: size.height, fit: BoxFit.fill,)));
+    return Scaffold(
+        body: Center(
+            child: imagePath == null
+                ? null
+                : Image.file(
+                    File(imagePath),
+                    width: size.width,
+                    height: size.height,
+                    fit: BoxFit.fill,
+                  )));
   }
 
   Widget captureControlRowWidget() {
@@ -203,5 +217,68 @@ class CameraState extends State<CameraWidget> {
         ),
       ],
     );
+  }
+
+  Widget cameraOptionsWidget() {
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          showCamera ? cameraTogglesRowWidget() : Container(),
+        ],
+      ),
+    );
+  }
+
+  IconData getCameraLensIcon(CameraLensDirection direction) {
+    switch (direction) {
+      case CameraLensDirection.back:
+        return Icons.camera_rear;
+      case CameraLensDirection.front:
+        return Icons.camera_front;
+      case CameraLensDirection.external:
+        return Icons.camera;
+    }
+    throw ArgumentError('Unknown lens direction');
+  }
+
+  Widget cameraTogglesRowWidget() {
+    final toggles = <Widget>[];
+
+    if (cameras != null) {
+      if (cameras.isEmpty) {
+        return const Text('No camera found');
+      } else {
+        // ignore: omit_local_variable_types
+        for (CameraDescription cameraDescription in cameras) {
+          toggles.add(
+            SizedBox(
+              width: 90.0,
+              child: RadioListTile<CameraDescription>(
+                title: Icon(getCameraLensIcon(cameraDescription.lensDirection)),
+                groupValue: controller?.description,
+                value: cameraDescription,
+                onChanged: controller != null ? onNewCameraSelected : null,
+              ),
+            ),
+          );
+        }
+      }
+    }
+
+    return Row(children: toggles);
+  }
+
+  void onNewCameraSelected(CameraDescription cameraDescription) async {
+    if (controller != null) {
+      await controller.dispose();
+    }
+    controller = CameraController(cameraDescription, ResolutionPreset.high);
+
+    controller.addListener(() {
+    });
+
+    await controller.initialize();
   }
 }
