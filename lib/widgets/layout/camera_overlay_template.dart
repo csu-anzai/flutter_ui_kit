@@ -24,7 +24,6 @@ class CameraState extends State<CameraWidget> {
   bool isReady = false;
   bool showCamera = true;
   String imagePath;
-
   final String heading;
   final String body;
   final bool isRectangle;
