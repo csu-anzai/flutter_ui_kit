@@ -37,7 +37,7 @@ class CameraState extends State<CameraWidget> {
         bottomNavigationBar: BottomAppBar(
           color: Colors.black26,
           child: Container(
-            decoration: BoxDecoration(color: Colors.black26),
+            decoration: const BoxDecoration(color: Colors.black26),
             height: showCamera ? 175 : 75,
             child: showCamera
                 ? Column(
