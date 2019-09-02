@@ -277,14 +277,8 @@ class CameraState extends State<CameraWidget> {
     controller = CameraController(cameraDescription, ResolutionPreset.high);
 
     controller.addListener(() {
-      if (mounted) setState(() {});
-      if (controller.value.hasError) {}
     });
 
     await controller.initialize();
-
-    if (mounted) {
-      setState(() {});
-    }
   }
 }
