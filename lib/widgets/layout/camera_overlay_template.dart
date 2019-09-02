@@ -24,7 +24,6 @@ class CameraState extends State<CameraWidget> {
   bool isReady = false;
   bool showCamera = true;
   String imagePath;
-
   final String heading;
   final String body;
   final bool isRectangle;
@@ -276,8 +275,7 @@ class CameraState extends State<CameraWidget> {
     }
     controller = CameraController(cameraDescription, ResolutionPreset.high);
 
-    controller.addListener(() {
-    });
+    controller.addListener(() {});
 
     await controller.initialize();
   }
