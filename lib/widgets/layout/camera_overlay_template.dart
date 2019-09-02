@@ -10,6 +10,7 @@ class CameraWidget extends StatefulWidget {
   final String body;
   final bool isRectangle;
 
+  // ignore: avoid_positional_boolean_parameters
   const CameraWidget(this.heading, this.body, this.isRectangle);
 
   @override
@@ -28,8 +29,10 @@ class CameraState extends State<CameraWidget> {
   final String body;
   final bool isRectangle;
 
+  // ignore: avoid_positional_boolean_parameters
   CameraState(this.heading, this.body, this.isRectangle);
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: BottomAppBar(
@@ -125,10 +128,10 @@ class CameraState extends State<CameraWidget> {
     if (!controller.value.isInitialized) {
       return null;
     }
-    final Directory extDir = await getApplicationDocumentsDirectory();
-    final String dirPath = '${extDir.path}/Pictures/flutter_test';
+    final extDir = await getApplicationDocumentsDirectory();
+    final dirPath = '${extDir.path}/Pictures/flutter_test';
     await Directory(dirPath).create(recursive: true);
-    final String filePath = '$dirPath/${timestamp()}.jpg';
+    final filePath = '$dirPath/${timestamp()}.jpg';
 
     if (controller.value.isTakingPicture) {
       return null;
@@ -136,7 +139,7 @@ class CameraState extends State<CameraWidget> {
 
     try {
       await controller.takePicture(filePath);
-    } on CameraException catch (e) {
+    } on CameraException {
       return null;
     }
     return filePath;
@@ -161,7 +164,7 @@ class CameraState extends State<CameraWidget> {
   }
 
   Widget imagePreviewWidget() {
-    var size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Scaffold(body: Center(child: imagePath == null ? null : Image.file(File(imagePath), width: size.width, height: size.height, fit: BoxFit.fill,)));
   }
 
