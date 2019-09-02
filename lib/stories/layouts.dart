@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_ui_kit/widgets/layout/camera_overlay_template.dart';
 import 'package:flutter_ui_kit/widgets/customradio/custom_radio.dart';
 import 'package:flutter_ui_kit/widgets/filled_button.dart';
 import 'package:flutter_ui_kit/widgets/layout/buy_sell_template.dart';
@@ -21,6 +22,7 @@ class Layouts extends StatelessWidget {
   static const String infoLayoutRoute = '/info-layout-page';
   static const String paymentMethodLayout = '/payment-method';
   static const String buySellLayout = '/buy-sell';
+  static const String cameraLayoutRoute = '/camera-screen';
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,8 @@ class Layouts extends StatelessWidget {
             _paymentMethod(context),
             _landingPage(context),
             _buySellLayout(context),
+            _cameraLayoutOval(context),
+            _cameraLayoutRec(context)
           ],
         ),
       ),
@@ -201,6 +205,42 @@ class Layouts extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _cameraLayoutOval(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Center(
+            child: FilledButton('Camera layout oval', onPressed: () {
+          Navigator.push<dynamic>(
+              context,
+              MaterialPageRoute<dynamic>(
+                  settings: const RouteSettings(name: cameraLayoutRoute),
+                  builder: (_) =>
+                      const CameraWidget(
+                        'Selfie',
+                        'Position your face in the oval.',
+                        true
+                      )));
+        })));
+  }
+
+  Widget _cameraLayoutRec(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Center(
+            child: FilledButton('Camera layout rectangle', onPressed: () {
+          Navigator.push<dynamic>(
+              context,
+              MaterialPageRoute<dynamic>(
+                  settings: const RouteSettings(name: cameraLayoutRoute),
+                  builder: (_) =>
+                      const CameraWidget(
+                        'Passport - front',
+                        'Flip to the page with your picture and make sure that the details are clear to read, with no blur or glare.',
+                        false
+                      )));
+        })));
   }
 
   Widget _infoLayout(BuildContext context) {

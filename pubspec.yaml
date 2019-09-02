@@ -20,6 +20,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^0.14.0
+  camera: ^0.5.4
+  path_provider: ^1.2.0
   flutter_cupertino_date_picker: ^1.0.8
   flutter_sparkline:
     git:
