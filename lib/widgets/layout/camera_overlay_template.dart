@@ -4,40 +4,46 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../button_common.dart';
+
 class CameraWidget extends StatefulWidget {
   static const String route = '/camera-screen';
   final String heading;
   final String body;
-  final bool isRectangle;
+  final bool isOval;
+  final FutureCallback onPressed;
 
   // ignore: avoid_positional_boolean_parameters
-  const CameraWidget(this.heading, this.body, this.isRectangle);
+  const CameraWidget(this.heading, this.body, this.isOval,
+      {@required this.onPressed});
 
   @override
-  CameraState createState() => CameraState(heading, body, isRectangle);
+  CameraState createState() => CameraState(heading, body, isOval, onPressed);
 }
 
 class CameraState extends State<CameraWidget> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final FutureCallback onPressed;
   List<CameraDescription> cameras;
   CameraController controller;
   bool isReady = false;
   bool showCamera = true;
   String imagePath;
+  bool isFront;
   final String heading;
   final String body;
-  final bool isRectangle;
+  final bool isOval;
 
   // ignore: avoid_positional_boolean_parameters
-  CameraState(this.heading, this.body, this.isRectangle);
+  CameraState(this.heading, this.body, this.isOval, this.onPressed);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: BottomAppBar(
-          color: Colors.black26,
+          color: Colors.black,
           child: Container(
-            decoration: const BoxDecoration(color: Colors.black26),
+            decoration: const BoxDecoration(color: Colors.black),
             height: showCamera ? 175 : 75,
             child: showCamera
                 ? Column(
@@ -62,22 +68,34 @@ class CameraState extends State<CameraWidget> {
                           ),
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          captureControlRowWidget(),
-                          cameraTogglesRowWidget()
-                        ],
-                      ),
+                      Stack(
+                          alignment: Alignment.bottomCenter,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                captureControlRowWidget(),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: cameraToggleWidget(),
+                                )
+                              ],
+                            )
+                          ]),
                     ],
                   )
                 : editCaptureControlRowWidget(),
           ),
         ),
-        backgroundColor: Colors.black26,
+        backgroundColor: Colors.transparent,
         key: scaffoldKey,
         body: showCamera
-            ? isRectangle
+            ? isOval
                 ? Stack(
                     children: <Widget>[
                       cameraPreviewWidget(),
@@ -116,7 +134,8 @@ class CameraState extends State<CameraWidget> {
   Future<void> setupCameras() async {
     try {
       cameras = await availableCameras();
-      controller = new CameraController(cameras[1], ResolutionPreset.ultraHigh);
+      controller = CameraController(
+          isOval ? cameras[1] : cameras[0], ResolutionPreset.veryHigh);
       await controller.initialize();
     } on CameraException catch (_) {
       setState(() {
@@ -187,7 +206,7 @@ class CameraState extends State<CameraWidget> {
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         IconButton(
-          icon: const Icon(Icons.radio_button_unchecked),
+          icon: const Icon(Icons.photo_camera),
           color: Colors.white,
           iconSize: 60,
           onPressed: controller != null && controller.value.isInitialized
@@ -210,10 +229,10 @@ class CameraState extends State<CameraWidget> {
                   showCamera = true;
                 })),
         IconButton(
-          icon: const Icon(Icons.check),
-          color: Colors.white,
-          iconSize: 45,
-        ),
+            icon: Icon(Icons.check),
+            color: Colors.white,
+            iconSize: 45,
+            onPressed: widget.onPressed),
       ],
     );
   }
@@ -224,60 +243,77 @@ class CameraState extends State<CameraWidget> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          showCamera ? cameraTogglesRowWidget() : Container(),
+          showCamera ? cameraToggleWidget() : Container(),
         ],
       ),
     );
   }
 
-  IconData getCameraLensIcon(CameraLensDirection direction) {
-    switch (direction) {
-      case CameraLensDirection.back:
-        return Icons.camera_rear;
-      case CameraLensDirection.front:
-        return Icons.camera_front;
-      case CameraLensDirection.external:
-        return Icons.camera;
+  Widget cameraToggleWidget() {
+    if (isFront == null) {
+      isOval ? isFront = true : isFront = false;
     }
-    throw ArgumentError('Unknown lens direction');
-  }
-
-  Widget cameraTogglesRowWidget() {
-    final toggles = <Widget>[];
-
     if (cameras != null) {
       if (cameras.isEmpty) {
         return const Text('No camera found');
       } else {
-        // ignore: omit_local_variable_types
-        for (CameraDescription cameraDescription in cameras) {
-          toggles.add(
-            SizedBox(
-              width: 90.0,
-              child: RadioListTile<CameraDescription>(
-                title: Icon(getCameraLensIcon(cameraDescription.lensDirection)),
-                groupValue: controller?.description,
-                value: cameraDescription,
-                onChanged: controller != null ? onNewCameraSelected : null,
-              ),
+        return IconButton(
+            icon: Icon(
+              Icons.switch_camera,
+              color: Colors.white,
+              size: 30,
             ),
-          );
-        }
+            onPressed: isFront ? onFrontCameraSelected : onBackCameraSelected);
       }
     }
-
-    return Row(children: toggles);
   }
 
-  void onNewCameraSelected(CameraDescription cameraDescription) async {
+  void onFrontCameraSelected() async {
+    isFront = false;
     if (controller != null) {
       await controller.dispose();
     }
-    controller = CameraController(cameraDescription, ResolutionPreset.high);
+    controller = CameraController(cameras[0], ResolutionPreset.veryHigh);
 
     controller.addListener(() {
+      if (mounted)
+        setState(() {});
+      if (controller.value.hasError) {}
     });
 
-    await controller.initialize();
+    try {
+      await controller.initialize();
+    } on CameraException catch (e) {
+      print('$e');
+    }
+
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  void onBackCameraSelected() async {
+    isFront = true;
+    if (controller != null) {
+      await controller.dispose();
+    }
+
+    controller = CameraController(cameras[1], ResolutionPreset.veryHigh);
+
+    controller.addListener(() {
+      if (mounted)
+        setState(() {});
+      if (controller.value.hasError) {}
+    });
+
+    try {
+      await controller.initialize();
+    } on CameraException catch (e) {
+      print('$e');
+    }
+
+    if (mounted) {
+      setState(() {});
+    }
   }
 }

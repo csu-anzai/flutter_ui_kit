@@ -216,11 +216,10 @@ class Layouts extends StatelessWidget {
               context,
               MaterialPageRoute<dynamic>(
                   settings: const RouteSettings(name: cameraLayoutRoute),
-                  builder: (_) =>
-                      const CameraWidget(
+                  builder: (_) => const CameraWidget(
                         'Selfie',
                         'Position your face in the oval.',
-                        true
+                        true,
                       )));
         })));
   }
@@ -234,12 +233,10 @@ class Layouts extends StatelessWidget {
               context,
               MaterialPageRoute<dynamic>(
                   settings: const RouteSettings(name: cameraLayoutRoute),
-                  builder: (_) =>
-                      const CameraWidget(
-                        'Passport - front',
-                        'Flip to the page with your picture and make sure that the details are clear to read, with no blur or glare.',
-                        false
-                      )));
+                  builder: (_) => const CameraWidget(
+                      'Passport - front',
+                      'Flip to the page with your picture and make sure that the details are clear to read, with no blur or glare.',
+                      false)));
         })));
   }
 
