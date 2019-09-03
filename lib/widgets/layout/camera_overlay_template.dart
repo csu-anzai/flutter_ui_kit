@@ -276,7 +276,8 @@ class CameraState extends State<CameraWidget> {
     controller = CameraController(cameras[0], ResolutionPreset.veryHigh);
 
     controller.addListener(() {
-      if (mounted) setState(() {});
+      if (mounted)
+        setState(() {});
       if (controller.value.hasError) {}
     });
 
@@ -300,7 +301,8 @@ class CameraState extends State<CameraWidget> {
     controller = CameraController(cameras[1], ResolutionPreset.veryHigh);
 
     controller.addListener(() {
-      if (mounted) setState(() {});
+      if (mounted)
+        setState(() {});
       if (controller.value.hasError) {}
     });
 
